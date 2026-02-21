@@ -1,0 +1,57 @@
+export interface Skill {
+  name: string;
+  icon: string;
+}
+
+export const skills: Skill[] = [
+  { name: "HTML5", icon: "devicon:html5" },
+  { name: "CSS3", icon: "devicon:css3" },
+  { name: "JavaScript", icon: "devicon:javascript" },
+  { name: "Vue.js", icon: "devicon:vuejs" },
+  { name: "React", icon: "devicon:react" },
+  { name: "TypeScript", icon: "devicon:typescript" },
+  { name: "Next.js", icon: "devicon:nextjs" },
+  { name: "Bootstrap", icon: "devicon:bootstrap" },
+  { name: "Tailwind CSS", icon: "devicon:tailwindcss" },
+  { name: "Laravel", icon: "devicon:laravel" },
+  { name: "CodeIgniter", icon: "logos:codeigniter-icon" },
+  { name: "PHP", icon: "devicon:php" },
+  { name: "MySQL", icon: "devicon:mysql" },
+  { name: "Python", icon: "devicon:python" },
+  { name: "PostgreSQL", icon: "devicon:postgresql" },
+  { name: "Docker", icon: "devicon:docker" },
+  { name: "Java", icon: "devicon:java" },
+  { name: ".NET", icon: "devicon:dot-net" },
+  { name: "VB.NET", icon: "vscode-icons:file-type-vb" },
+  { name: "Flutter", icon: "logos:flutter" },
+  { name: "Dart", icon: "devicon:dart" },
+  { name: "Firebase", icon: "devicon:firebase" },
+  { name: "Node.js", icon: "devicon:nodejs" },
+  { name: "Git", icon: "devicon:git" },
+  { name: "GitHub", icon: "ri:github-fill" },
+  { name: "Apache", icon: "devicon:apache" },
+  { name: "Xampp", icon: "logos:xampp" },
+  { name: "Figma", icon: "devicon:figma" },
+  { name: "Framer", icon: "gg:framer" },
+  { name: "Shopify", icon: "logos:shopify" },
+  { name: "Wordpress", icon: "skill-icons:wordpress" },
+  { name: "Photoshop", icon: "devicon:photoshop" },
+  { name: "Canva", icon: "bxl:canva" },
+];
+
+export const tools: Skill[] = [
+  { name: "ChatGPT", icon: "simple-icons:openai" },
+  { name: "Claude", icon: "material-icon-theme:claude" },
+  { name: "Gemini", icon: "vscode-icons:file-type-gemini" },
+  { name: "DeepSeek", icon: "ri:deepseek-fill" },
+  { name: "Lovable", icon: "devicon:lovable" },
+  { name: "GitHub Copilot", icon: "material-icon-theme:copilot" },
+  { name: "Windsurf", icon: "simple-icons:windsurf" },
+  { name: "Cursor", icon: "material-icon-theme:cursor" },
+  { name: "VS Code", icon: "devicon:vscode" },
+  { name: "Visual Studio", icon: "devicon:visualstudio" },
+  { name: "Sublime Text", icon: "skill-icons:sublime-dark" },
+  { name: "Android Studio", icon: "devicon:androidstudio" },
+  { name: "PyCharm", icon: "devicon:pycharm" },
+  { name: "Capcut", icon: "hugeicons:capcut" },
+];
