@@ -60,7 +60,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            Web &amp; Software Developer &mdash; UI/UX Designer
+            Web &amp; Software Developer | UI/UX Designer
           </motion.p>
 
           {/* Main heading */}
