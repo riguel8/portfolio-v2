@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects, platformLabels, type Platform } from "@/lib/projects";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
-import ScrollReveal from "@/components/scroll-reveal";
+import { Icon } from "@iconify/react";
 import Lightbox from "@/components/lightbox";
 
 if (typeof window !== "undefined") {
@@ -177,7 +177,7 @@ export default function HorizontalGallery() {
               ))}
             </div>
 
-            <div className="mt-6 flex items-center gap-3 text-xs text-muted">
+            {/* <div className="mt-6 flex items-center gap-3 text-xs text-muted">
               <span className="inline-flex items-center gap-1.5">
                 <span className="h-2 w-2 rounded-full bg-[#61dafb]" />
                 Web
@@ -190,7 +190,7 @@ export default function HorizontalGallery() {
                 <span className="h-2 w-2 rounded-full bg-[#a259ff]" />
                 Design
               </span>
-            </div>
+            </div> */}
           </div>
 
           {/* Project cards */}
@@ -210,7 +210,7 @@ export default function HorizontalGallery() {
                     className="font-mono text-sm text-muted"
                     aria-hidden="true"
                   >
-                    {project.id}
+                    {(index + 1).toString().padStart(2, '0')}
                   </span>
                   <span className="rounded-full border border-border px-3 py-1 text-xs text-muted">
                     {project.category}
@@ -223,12 +223,19 @@ export default function HorizontalGallery() {
                   {project.description}
                 </p>
                 <div className="flex items-center gap-2">
-                  <span
-                    className="h-2 w-2 rounded-full"
-                    style={{ backgroundColor: project.color }}
-                    aria-hidden="true"
-                  />
-                  <span className="text-xs text-muted">{project.tech}</span>
+                  {project.tech.map((tech) => (
+                    <div
+                      key={tech.icon}
+                      className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-card"
+                      title={tech.icon.split(':')[1] || tech.icon}
+                    >
+                      <Icon
+                        icon={tech.icon}
+                        className="text-lg"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
 

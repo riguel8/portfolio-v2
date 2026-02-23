@@ -7,8 +7,7 @@ export interface Project {
   platform: "web" | "desktop" | "design";
   description: string;
   link: string;
-  tech: string;
-  color: string;
+  tech: Array<{ icon: string }>;
   thumbnail: string;
   images: string[];
 }
@@ -32,8 +31,11 @@ export const projects: Project[] = [
     link: "",
     description:
       "Developed a frontend application for E-commerce website using React.js + TypeScript + Tailwind CSS.",
-    tech: "React.js · TypeScript · Tailwind CSS",
-    color: "#61dafb",
+    tech: [
+      { icon: "devicon:react" },
+      { icon: "devicon:typescript" },
+      { icon: "devicon:tailwindcss" },
+    ],
     thumbnail: "/assets/images/projects/Maison/Hero.png",
     images: [
       "/assets/images/projects/Maison/Hero.png",
@@ -50,12 +52,15 @@ export const projects: Project[] = [
     link: "",
     description:
       "Developed a frontend web application for FARMURA Admin using React.js + TypeScript + Tailwind CSS.",
-    tech: "React.js · TypeScript · Tailwind CSS",
-    color: "#c8ff00",
+    tech: [
+      { icon: "devicon:react" },
+      { icon: "devicon:typescript" },
+      { icon: "devicon:tailwindcss" },
+    ],
     thumbnail: "/assets/images/projects/FARMURA-admin/dashboard.png",
     images: [
-      "/assets/images/projects/FARMURA-admin/dashboard.png",
       "/assets/images/projects/FARMURA-admin/LOGIN.png",
+      "/assets/images/projects/FARMURA-admin/dashboard.png",
       "/assets/images/projects/FARMURA-admin/pasakay.png",
       "/assets/images/projects/FARMURA-admin/pasugo.png",
     ],
@@ -68,8 +73,11 @@ export const projects: Project[] = [
     link: "",
     description:
       "Built a CodeIgniter & MySQL web system supporting digital journal publication, content workflows, and user management.",
-    tech: "CodeIgniter · MySQL",
-    color: "#dd4814",
+    tech: [
+      { icon: "logos:codeigniter-icon" },
+      { icon: "devicon:mysql" },
+      { icon: "devicon:tailwindcss" },
+    ],
     thumbnail: "/assets/images/projects/Journal/landing pages.png",
     images: [
       "/assets/images/projects/Journal/landing pages.png",
@@ -86,8 +94,11 @@ export const projects: Project[] = [
     link: "",
     description:
       "Designed and deployed in Laravel & MySQL, streamlining patient scheduling, records, and clinic operations.",
-    tech: "Laravel · MySQL",
-    color: "#ff2d20",
+    tech: [
+      { icon: "logos:laravel" },
+      { icon: "devicon:mysql" },
+      { icon: "devicon:bootstrap" },
+    ],
     thumbnail: "/assets/images/projects/optical.png",
     images: [
       "/assets/images/projects/optical.png",
@@ -101,8 +112,11 @@ export const projects: Project[] = [
     link: "",
     description:
       "Implemented with Vue.js & MySQL, featuring advanced tools (lasso, poly-lasso, brush) for real-time interactive image editing.",
-    tech: "Vue.js · MySQL",
-    color: "#42b883",
+    tech: [
+      { icon: "logos:vue" },
+      { icon: "devicon:mysql" },
+      { icon: "devicon:tailwindcss" },
+    ],
     thumbnail: "/assets/images/projects/editor.png",
     images: [
       "/assets/images/projects/editor.png",
@@ -116,8 +130,11 @@ export const projects: Project[] = [
     link: "",
     description:
       "Engineered a tenant and billing management platform using ASP.NET & MySQL to automate payments and reports.",
-    tech: "ASP.NET · MySQL",
-    color: "#512bd4",
+    tech: [
+      { icon: "devicon:dot-net" },
+      { icon: "devicon:mysql" },
+      { icon: "devicon:bootstrap" },
+    ],
     thumbnail: "/assets/images/projects/404.png",
     images: [
       "/assets/images/projects/404.png",
@@ -131,8 +148,11 @@ export const projects: Project[] = [
     link: "",
     description:
       "Developed in ASP.NET & MySQL, enabling secure file storage, quick retrieval, and role-based access control.",
-    tech: "ASP.NET · MySQL",
-    color: "#512bd4",
+    tech: [
+      { icon: "devicon:dot-net" },
+      { icon: "devicon:mysql" },
+      { icon: "devicon:bootstrap" },
+    ],
     thumbnail: "/assets/images/projects/404.png",
     images: [
       "/assets/images/projects/404.png",
@@ -148,8 +168,10 @@ export const projects: Project[] = [
     link: "",
     description:
       "Designed with VB.NET & MySQL, automating bookings, payments, and room availability management.",
-    tech: "VB.NET · MySQL",
-    color: "#00d4ff",
+    tech: [
+      { icon: "vscode-icons:file-type-vb" },
+      { icon: "devicon:mysql" },
+      ],
     thumbnail: "/assets/images/projects/404.png",
     images: [
       "/assets/images/projects/404.png",
@@ -163,8 +185,10 @@ export const projects: Project[] = [
     link: "",
     description:
       "Built in VB.NET & MySQL, optimizing sales processing, inventory tracking, and generating real-time reports.",
-    tech: "VB.NET · MySQL",
-    color: "#0078d4",
+    tech: [
+      { icon: "vscode-icons:file-type-vb" },
+      { icon: "devicon:mysql" },
+    ],
     thumbnail: "/assets/images/projects/404.png",
     images: [
       "/assets/images/projects/404.png",
@@ -180,14 +204,15 @@ export const projects: Project[] = [
     link: "",
     description:
       "Designed a community-driven digital platform focused on accessibility, trust, and user-centered experiences for agricultural stakeholders.",
-    tech: "Figma",
-    color: "#a259ff",
+    tech: [
+      { icon: "logos:figma" },
+    ],
     thumbnail: "/assets/images/projects/FARMURA/FARMURA-thumbnail.png",
     images: [
       "/assets/images/projects/FARMURA/FARMURA-thumbnail.png",
-      "/assets/images/projects/FARMURA/Home.png",
       "/assets/images/projects/FARMURA/Login.png",
       "/assets/images/projects/FARMURA/SIGNUP.png",
+      "/assets/images/projects/FARMURA/Home.png",
       "/assets/images/projects/FARMURA/Services.png",
       "/assets/images/projects/FARMURA/Wallet.png",
     ],
@@ -200,8 +225,9 @@ export const projects: Project[] = [
     link: "https://www.figma.com/design/mG5mc4sgmxZv2qExdqujop/Wanderly?node-id=0-1&p=f&t=FuXWoWQDMSUCn6cu-0",
     description:
       "Designed a landing page for a travel app using Figma.",
-    tech: "Figma",
-    color: "#f24e1e",
+    tech: [
+      { icon: "logos:figma" },
+    ],
     thumbnail: "/assets/images/projects/Wanderly/Hero.png",
     images: [
       "/assets/images/projects/Wanderly/Hero.png",
@@ -217,8 +243,9 @@ export const projects: Project[] = [
     link: "https://www.figma.com/design/UKhhkqyYvLsDniZqskzdHK/Wine-App?node-id=1-1446&p=f&t=m9UNwTWPuaFvWSw0-0",
     description:
       "Created UI/UX concept for a wine price comparison platform, emphasizing automation, clean design, and data visualization.",
-    tech: "Figma",
-    color: "#722f37",
+    tech: [
+      { icon: "logos:figma" },
+    ],
     thumbnail: "/assets/images/projects/Wine/WINEAPP-thumbnail.png",
     images: [
       "/assets/images/projects/Wine/WINEAPP-thumbnail.png",
@@ -237,13 +264,14 @@ export const projects: Project[] = [
     link: "https://www.figma.com/design/O8ta1Cgja5nEQCKBNeHoVN/DM-Resto?node-id=1-1201&p=f&t=POhLUAOyTDRIjXAy-0",
     description:
       "Redesigned the POS system's interface in Figma to enhance usability, speed, and operator efficiency.",
-    tech: "Figma",
-    color: "#e67e22",
+    tech: [
+      { icon: "logos:figma" },
+    ],
     thumbnail: "/assets/images/projects/Resto/dmresto.png",
     images: [
       "/assets/images/projects/Resto/dmresto.png",
-      "/assets/images/projects/Resto/LANDING PAGE.png",
       "/assets/images/projects/Resto/LOGIN PAGE.png",
+      "/assets/images/projects/Resto/LANDING PAGE.png",
       "/assets/images/projects/Resto/DASHBOARD.png",
       "/assets/images/projects/Resto/Menu.jpg",
     ],
@@ -256,15 +284,16 @@ export const projects: Project[] = [
     link: "https://www.figma.com/design/EzC614eVRUmXeG14LJRPHy/DateDash?node-id=0-1&p=f&t=Skwi4D7FCJOYEQLa-0",
     description:
       "Designed mobile-first UI/UX in Figma for a dating app, delivering intuitive flows, wireframes, and prototypes.",
-    tech: "Figma",
-    color: "#ff6b6b",
+    tech: [
+      { icon: "logos:figma" },
+    ],
     thumbnail: "/assets/images/projects/Datedash/datedash.png",
     images: [
       "/assets/images/projects/Datedash/datedash.png",
-      "/assets/images/projects/Datedash/Main 3.png",
       "/assets/images/projects/Datedash/Signup.png",
-      "/assets/images/projects/Datedash/Location.png",
+      "/assets/images/projects/Datedash/Main 3.png",
       "/assets/images/projects/Datedash/Match.png",
+      "/assets/images/projects/Datedash/Location.png",
     ],
   },
 ];
