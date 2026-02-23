@@ -3,12 +3,13 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollReveal from "@/components/scroll-reveal";
+import { Icon } from "@iconify/react";
 import ParallaxWrapper from "@/components/parallax-wrapper";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const socialLinks = [
   { label: "Facebook", href: "https://www.facebook.com/al.right.186" },
-  { label: "Gmail", href: "mailto:rmdiaz1234@gmail.com" },
+  { label: "Gmail", href: "https://mail.google.com/mail/?view=cm&fs=1&to=rmdiaz1234@gmail.com" },
   { label: "GitHub", href: "https://github.com/riguel8" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/rigueldi" },
   { label: "WhatsApp", href: "https://wa.me/639451743608" },
@@ -84,30 +85,54 @@ export default function Contact() {
               <ScrollReveal delay={0.2}>
                 <p className="mt-8 max-w-md text-base leading-relaxed text-muted">
                   Let&apos;s build something great together &mdash; feel free to
-                  connect with me through any of the platforms below.
+                  connect with me through any of the platforms.
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={0.3}>
-                <a
-                  href="mailto:rmdiaz1234@gmail.com"
-                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-bold text-background transition-transform duration-300 hover:scale-105"
-                >
-                  rmdiaz1234@gmail.com
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    aria-hidden="true"
+                <div className="mt-8 flex gap-4">
+                  <a
+                    href="tel:09922108064"
+                    className="flex-1 flex items-center justify-between rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <Icon
+                          icon="lucide:phone"
+                          className="h-5 w-5 text-muted"
+                          aria-hidden="true"
+                        />
+                        <span className="font-mono text-sm font-semibold text-muted uppercase tracking-wider">
+                          Call
+                        </span>
+                      </div>
+                      <div className="mt-1 text-xl font-bold text-foreground">
+                        09922108064
+                      </div>
+                    </div>
+                  </a>
+                  <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=rmdiaz1234@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-between rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5"
+                  >
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <Icon
+                          icon="lucide:mail"
+                          className="h-5 w-5 text-muted"
+                          aria-hidden="true"
+                        />
+                        <span className="font-mono text-sm font-semibold text-muted uppercase tracking-wider">
+                          Email
+                        </span>
+                      </div>
+                      <div className="mt-1 text-xl font-bold text-foreground">
+                        rmdiaz1234@gmail.com
+                      </div>
+                    </div>
+                  </a>
+                </div>
               </ScrollReveal>
             </motion.div>
 
@@ -165,10 +190,10 @@ export default function Contact() {
           <ScrollReveal delay={0.4}>
             <div className="mt-32 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
               <p className="text-sm text-muted">
-                &copy; {new Date().getFullYear()} Portfolio. All rights reserved.
+                &copy; {new Date().getFullYear()} RMD Portfolio. All rights reserved.
               </p>
               <p className="text-sm text-muted">
-                Built with RMD, Next.js, GSAP &amp; Framer Motion
+                Built with Next.js and Framer Motion
               </p>
             </div>
           </ScrollReveal>

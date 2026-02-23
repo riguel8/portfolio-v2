@@ -33,8 +33,8 @@ export const skills: Skill[] = [
   { name: "Xampp", icon: "logos:xampp" },
   { name: "Figma", icon: "devicon:figma" },
   { name: "Framer", icon: "gg:framer" },
-  { name: "Shopify", icon: "logos:shopify" },
-  { name: "Wordpress", icon: "skill-icons:wordpress" },
+  // { name: "Shopify", icon: "logos:shopify" },
+  // { name: "Wordpress", icon: "skill-icons:wordpress" },
   { name: "Photoshop", icon: "devicon:photoshop" },
   { name: "Canva", icon: "bxl:canva" },
 ];
