@@ -24,6 +24,7 @@ export default function HorizontalGallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImages, setLightboxImages] = useState<string[]>([]);
   const [lightboxTitle, setLightboxTitle] = useState("");
+  const [lightboxLink, setLightboxLink] = useState("");
 
   const filteredProjects = useMemo(
     () =>
@@ -33,9 +34,10 @@ export default function HorizontalGallery() {
     [activePlatform]
   );
 
-  const openPreview = (images: string[], title: string) => {
+  const openPreview = (images: string[], title: string, link: string) => {
     setLightboxImages(images);
     setLightboxTitle(title);
+    setLightboxLink(link);
     setLightboxOpen(true);
   };
 
@@ -99,7 +101,7 @@ export default function HorizontalGallery() {
               <article
                 key={project.id}
                 className="group cursor-pointer"
-                onClick={() => openPreview(project.images, project.title)}
+                onClick={() => openPreview(project.images, project.title, project.link)}
               >
                 <div className="relative aspect-4/3 overflow-hidden rounded-xl bg-card">
                   <Image
@@ -123,6 +125,7 @@ export default function HorizontalGallery() {
           isOpen={lightboxOpen}
           onClose={() => setLightboxOpen(false)}
           title={lightboxTitle}
+          Link={lightboxLink}
         />
       </section>
     );
@@ -198,7 +201,7 @@ export default function HorizontalGallery() {
               className="group flex h-[60vh] w-[38vw] shrink-0 cursor-pointer flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
               role="article"
               aria-label={`${project.title} — ${project.category}`}
-              onClick={() => openPreview(project.images, project.title)}
+              onClick={() => openPreview(project.images, project.title, project.link)}
             >
               {/* Top — Info */}
               <div className="flex flex-col gap-3 p-6 pb-4">
@@ -259,6 +262,7 @@ export default function HorizontalGallery() {
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
         title={lightboxTitle}
+        Link={lightboxLink}
       />
     </>
   );

@@ -10,6 +10,7 @@ interface LightboxProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string | string[];
+  Link?: string;
 }
 
 export default function Lightbox({
@@ -18,6 +19,7 @@ export default function Lightbox({
   isOpen,
   onClose,
   title,
+  Link,
 }: LightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
@@ -79,6 +81,16 @@ export default function Lightbox({
                   <h3 className="text-lg font-semibold text-white">
                     {Array.isArray(title) ? title[currentIndex] : title}
                   </h3>
+                )}
+                {Link && (
+                  <a
+                    href={Link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/80 hover:text-white transition-colors"
+                  >
+                    View Project →
+                  </a>
                 )}
                 {images.length > 1 && (
                   <p className="text-sm text-white/50">

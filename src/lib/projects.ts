@@ -1,9 +1,12 @@
+import { link } from "fs";
+
 export interface Project {
   id: string;
   title: string;
   category: string;
   platform: "web" | "desktop" | "design";
   description: string;
+  link: string;
   tech: string;
   color: string;
   thumbnail: string;
@@ -26,6 +29,7 @@ export const projects: Project[] = [
     title: "Maison",
     category: "E-Commerce Frontend",
     platform: "web",
+    link: "",
     description:
       "Developed a frontend application for E-commerce website using React.js + TypeScript + Tailwind CSS.",
     tech: "React.js · TypeScript · Tailwind CSS",
@@ -43,6 +47,7 @@ export const projects: Project[] = [
     title: "FARMURA Admin",
     category: "Admin Dashboard",
     platform: "web",
+    link: "",
     description:
       "Developed a frontend web application for FARMURA Admin using React.js + TypeScript + Tailwind CSS.",
     tech: "React.js · TypeScript · Tailwind CSS",
@@ -60,6 +65,7 @@ export const projects: Project[] = [
     title: "Journal of Science",
     category: "Web Application",
     platform: "web",
+    link: "",
     description:
       "Built a CodeIgniter & MySQL web system supporting digital journal publication, content workflows, and user management.",
     tech: "CodeIgniter · MySQL",
@@ -77,6 +83,7 @@ export const projects: Project[] = [
     title: "Web-Based Appointment & Management System",
     category: "Capstone Project",
     platform: "web",
+    link: "",
     description:
       "Designed and deployed in Laravel & MySQL, streamlining patient scheduling, records, and clinic operations.",
     tech: "Laravel · MySQL",
@@ -91,6 +98,7 @@ export const projects: Project[] = [
     title: "Image Editor",
     category: "Web Application",
     platform: "web",
+    link: "",
     description:
       "Implemented with Vue.js & MySQL, featuring advanced tools (lasso, poly-lasso, brush) for real-time interactive image editing.",
     tech: "Vue.js · MySQL",
@@ -105,6 +113,7 @@ export const projects: Project[] = [
     title: "Boarding House Management System",
     category: "Web Application",
     platform: "web",
+    link: "",
     description:
       "Engineered a tenant and billing management platform using ASP.NET & MySQL to automate payments and reports.",
     tech: "ASP.NET · MySQL",
@@ -119,6 +128,7 @@ export const projects: Project[] = [
     title: "Document Management System",
     category: "Web Application",
     platform: "web",
+    link: "",
     description:
       "Developed in ASP.NET & MySQL, enabling secure file storage, quick retrieval, and role-based access control.",
     tech: "ASP.NET · MySQL",
@@ -135,6 +145,7 @@ export const projects: Project[] = [
     title: "Hotel Reservation System",
     category: "Desktop Application",
     platform: "desktop",
+    link: "",
     description:
       "Designed with VB.NET & MySQL, automating bookings, payments, and room availability management.",
     tech: "VB.NET · MySQL",
@@ -149,6 +160,7 @@ export const projects: Project[] = [
     title: "POS and Inventory System",
     category: "Desktop Application",
     platform: "desktop",
+    link: "",
     description:
       "Built in VB.NET & MySQL, optimizing sales processing, inventory tracking, and generating real-time reports.",
     tech: "VB.NET · MySQL",
@@ -165,6 +177,7 @@ export const projects: Project[] = [
     title: "FARMURA",
     category: "UI/UX Design",
     platform: "design",
+    link: "",
     description:
       "Designed a community-driven digital platform focused on accessibility, trust, and user-centered experiences for agricultural stakeholders.",
     tech: "Figma",
@@ -184,6 +197,7 @@ export const projects: Project[] = [
     title: "Wanderly",
     category: "UI/UX Design",
     platform: "design",
+    link: "https://www.figma.com/design/mG5mc4sgmxZv2qExdqujop/Wanderly?node-id=0-1&p=f&t=FuXWoWQDMSUCn6cu-0",
     description:
       "Designed a landing page for a travel app using Figma.",
     tech: "Figma",
@@ -200,6 +214,7 @@ export const projects: Project[] = [
     title: "Wine Price Edge Solutions",
     category: "UI/UX Design",
     platform: "design",
+    link: "https://www.figma.com/design/UKhhkqyYvLsDniZqskzdHK/Wine-App?node-id=1-1446&p=f&t=m9UNwTWPuaFvWSw0-0",
     description:
       "Created UI/UX concept for a wine price comparison platform, emphasizing automation, clean design, and data visualization.",
     tech: "Figma",
@@ -219,6 +234,7 @@ export const projects: Project[] = [
     title: "DM Resto",
     category: "UI/UX Design",
     platform: "design",
+    link: "https://www.figma.com/design/O8ta1Cgja5nEQCKBNeHoVN/DM-Resto?node-id=1-1201&p=f&t=POhLUAOyTDRIjXAy-0",
     description:
       "Redesigned the POS system's interface in Figma to enhance usability, speed, and operator efficiency.",
     tech: "Figma",
@@ -237,6 +253,7 @@ export const projects: Project[] = [
     title: "DateDash App",
     category: "UI/UX Design",
     platform: "design",
+    link: "https://www.figma.com/design/EzC614eVRUmXeG14LJRPHy/DateDash?node-id=0-1&p=f&t=Skwi4D7FCJOYEQLa-0",
     description:
       "Designed mobile-first UI/UX in Figma for a dating app, delivering intuitive flows, wireframes, and prototypes.",
     tech: "Figma",
