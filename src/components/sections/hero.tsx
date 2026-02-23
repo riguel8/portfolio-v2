@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative flex h-[200vh] items-start justify-center"
+      className="section-dots relative flex h-[200vh] items-start justify-center"
       aria-label="Hero"
     >
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">

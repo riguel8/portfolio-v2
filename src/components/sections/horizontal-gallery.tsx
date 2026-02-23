@@ -136,7 +136,7 @@ export default function HorizontalGallery() {
       <section
         ref={sectionRef}
         id="work"
-        className="relative"
+        className="section-noise relative"
         aria-label="Selected Work"
       >
         {/* Horizontal track */}

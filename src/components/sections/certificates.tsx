@@ -9,6 +9,68 @@ import Lightbox from "@/components/lightbox";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { certificates } from "@/lib/certificates";
 
+/* Split certificates into two rows for the marquee */
+const half = Math.ceil(certificates.length / 2);
+const row1 = certificates.slice(0, half);
+const row2 = certificates.slice(half);
+
+function CertCard({
+  cert,
+  index,
+  onClick,
+}: {
+  cert: (typeof certificates)[number];
+  index: number;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className="group relative shrink-0 w-70 overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
+      aria-label={`View certificate: ${cert.title}`}
+    >
+      <div className="relative aspect-4/3 w-full overflow-hidden">
+        <Image
+          src={cert.image}
+          alt={cert.title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="280px"
+        />
+        {/* Hover overlay */}
+        <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/40">
+          <svg
+            className="h-8 w-8 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.5}
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"
+            />
+          </svg>
+        </div>
+      </div>
+      <div className="flex items-center gap-2 p-3">
+        <Image
+          src={cert.logo}
+          alt={cert.issuer}
+          width={20}
+          height={20}
+          className="shrink-0 rounded-sm object-contain"
+        />
+        <p className="text-xs font-medium leading-tight text-foreground line-clamp-2">
+          {cert.title}
+        </p>
+      </div>
+    </button>
+  );
+}
+
 export default function Certificates() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -32,7 +94,7 @@ export default function Certificates() {
 
   return (
     <>
-      <section ref={sectionRef} id="certificates" className="relative overflow-hidden py-32" aria-label="Certificates">
+      <section ref={sectionRef} id="certificates" className="section-grid relative overflow-hidden py-32" aria-label="Certificates">
         {/* Decorative parallax elements */}
         {!prefersReducedMotion && (
           <>
@@ -70,63 +132,37 @@ export default function Certificates() {
               </p>
             </ScrollReveal>
           </ParallaxWrapper>
+        </div>
 
-          {/* Certificate grid */}
-          <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {certificates.map((cert, index) => (
-              <ScrollReveal
-                key={cert.title}
-                delay={0.05 * index}
-                direction="up"
-                distance={30}
-              >
-                <button
-                  onClick={() => openCert(index)}
-                  className="group relative w-full overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
-                  aria-label={`View certificate: ${cert.title}`}
-                >
-                  <div className="relative aspect-4/3 w-full overflow-hidden">
-                    <Image
-                      src={cert.image}
-                      alt={cert.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                    />
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/40">
-                      <svg
-                        className="h-8 w-8 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={1.5}
-                        aria-hidden="true"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 p-3">
-                    <Image
-                      src={cert.logo}
-                      alt={cert.issuer}
-                      width={20}
-                      height={20}
-                      className="shrink-0 rounded-sm object-contain"
-                    />
-                    <p className="text-xs font-medium leading-tight text-foreground line-clamp-2">
-                      {cert.title}
-                    </p>
-                  </div>
-                </button>
-              </ScrollReveal>
-            ))}
+        {/* Marquee rows — full width, overflow hidden */}
+        <div className="mt-16 flex flex-col gap-4">
+          {/* Row 1 — scrolls left */}
+          <div className="marquee-container group/marquee">
+            <div className={`marquee-track marquee-left ${prefersReducedMotion ? "marquee-paused" : ""}`}>
+              {[...row1, ...row1, ...row1, ...row1].map((cert, i) => (
+                <CertCard
+                  key={`r1-${i}`}
+                  cert={cert}
+                  index={i % row1.length}
+                  onClick={() => openCert(certificates.indexOf(cert))}
+                />
+              ))}
+            </div>
           </div>
+
+          {/* Row 2 — scrolls right */}
+          {/* <div className="marquee-container group/marquee">
+            <div className={`marquee-track marquee-right ${prefersReducedMotion ? "marquee-paused" : ""}`}>
+              {[...row2, ...row2, ...row2, ...row2].map((cert, i) => (
+                <CertCard
+                  key={`r2-${i}`}
+                  cert={cert}
+                  index={i % row2.length}
+                  onClick={() => openCert(certificates.indexOf(cert))}
+                />
+              ))}
+            </div>
+          </div> */}
         </div>
       </section>
 

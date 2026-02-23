@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar";
+import CustomCursor from "@/components/custom-cursor";
 import Hero from "@/components/sections/hero";
 import HorizontalGallery from "@/components/sections/horizontal-gallery";
 // import ParallaxImages from "@/components/sections/parallax-images";
@@ -9,6 +10,7 @@ import Contact from "@/components/sections/contact";
 export default function Home() {
   return (
     <>
+      <CustomCursor />
       <Navbar />
       <main>
         <Hero />

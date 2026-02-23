@@ -44,7 +44,7 @@ export default function Contact() {
             ? {}
             : { scale, borderTopLeftRadius: borderRadius, borderTopRightRadius: borderRadius }
         }
-        className="gpu-accelerated relative mx-auto overflow-hidden bg-card"
+        className="gpu-accelerated section-dots relative mx-auto overflow-hidden bg-card"
       >
         {/* Decorative parallax elements */}
         {!prefersReducedMotion && (
