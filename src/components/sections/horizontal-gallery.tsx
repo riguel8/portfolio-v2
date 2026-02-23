@@ -191,6 +191,8 @@ export default function HorizontalGallery() {
                 Design
               </span>
             </div> */}
+            <br />
+            <p className="text-xs text-muted">Note: Some projects are private or offline; only image previews are available.</p>
           </div>
 
           {/* Project cards */}
@@ -274,3 +276,4 @@ export default function HorizontalGallery() {
     </>
   );
 }
+
