@@ -6,7 +6,7 @@ A modern, high-performance portfolio website showcasing web development, softwar
 
 ##  Live Demo
 
-[View Live Portfolio](https://rueldiaz.vercel.app) *(deployed on Vercel)*
+[View Live Portfolio](https://riguel-portfolio.vercel.app) *(deployed on Vercel)*
 
 ##  Features
 
