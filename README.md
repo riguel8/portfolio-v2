@@ -10,7 +10,7 @@ A modern, high-performance portfolio website showcasing web development, softwar
 
 ##  Features
 
-###  **Core Features**
+###  Core Features
 - **Responsive Design** - Optimized for all devices and screen sizes
 - **Dark Theme** - Modern dark aesthetic with accent color #c8ff00
 - **Smooth Animations** - Framer Motion powered transitions and scroll reveals
@@ -18,14 +18,14 @@ A modern, high-performance portfolio website showcasing web development, softwar
 - **Interactive Lightbox** - Keyboard-navigable image galleries for projects
 - **Horizontal Scrolling Gallery** - GSAP-powered project showcase
 
-###  **Technical Features**
+###  Technical Features
 - **SEO Optimized** - Open Graph, Twitter Cards, structured data
 - **Performance First** - Next.js 16, image optimization, lazy loading
 - **Security Headers** - CSP, HSTS, X-Frame-Options, and more
 - **TypeScript** - Full type safety throughout the application
 - **Production Ready** - Error boundaries, custom 404, sitemap, robots.txt
 
-###  **Sections**
+###  Sections
 - **Hero** - Animated introduction with resume download/view
 - **About** - Skills showcase with AI tools integration
 - **Projects** - Horizontal gallery with platform filtering (Web/Desktop/Design)
@@ -34,22 +34,22 @@ A modern, high-performance portfolio website showcasing web development, softwar
 
 ##  Tech Stack
 
-### **Frontend Framework**
+### Frontend Framework
 - **Next.js 16** - App Router, Server Components, Turbopack
 - **React 19** - Latest React features and hooks
 - **TypeScript** - Full type safety
 
-### **Styling & UI**
+### Styling & UI
 - **Tailwind CSS v4** - Utility-first styling with custom design tokens
 - **Geist Font** - Modern typography from Vercel
 - **Iconify** - 100k+ icons from various icon sets
 
-### **Animations & Interactions**
+### Animations & Interactions
 - **Framer Motion** - Declarative animations and page transitions
 - **GSAP ScrollTrigger** - Advanced scroll-based animations
 - **Lenis** - Smooth scroll library with momentum
 
-### **Development Tools**
+### Development Tools
 - **ESLint** - Code linting and formatting
 - **TypeScript** - Type checking
 - **Next.js Compiler** - React Compiler integration
@@ -132,7 +132,7 @@ public/
 
 4. **Open your browser**
    - Navigate to [http://localhost:3000](http://localhost:3000)
-   - The app will hot-reload as you make changes
+   - The app will hot-reload as you edit the file
 
 ### Build for Production
 
@@ -259,9 +259,9 @@ The app can be deployed to any platform supporting Node.js:
 **Ruel Miguel Diaz**
 - **Email**: rmdiaz1234@gmail.com
 - **Phone**: +63 945 174 3608
-- **GitHub**: [@riguel8](https://github.com/riguel8)
-- **LinkedIn**: [Riguel Diaz](https://linkedin.com/in/rigueldi)
-- **Facebook**: [al.right.186](https://facebook.com/al.right.186)
+- **GitHub**: https://github.com/riguel8
+- **LinkedIn**: https://linkedin.com/in/rigueldi
+- **Facebook**: https://facebook.com/al.right.186
 
 ##  License
 
