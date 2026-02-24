@@ -204,34 +204,52 @@ export default function About() {
             </div>
           </ParallaxWrapper>
 
-          {/* Experience — parallax horizontal from right (negative speed) */}
+          {/* Experience — vertical timeline */}
           <ParallaxWrapper speed={-0.12} axis="horizontal">
             <ScrollReveal>
               <p className="mb-8 font-mono text-xs tracking-widest text-muted uppercase">
                 Experience
               </p>
             </ScrollReveal>
-            <div className="space-y-6">
-              {experience.map((exp, index) => (
-                <ScrollReveal
-                  key={`${exp.role}-${exp.period}`}
-                  delay={0.1 * index}
-                  direction="left"
-                  distance={20}
-                >
-                  <div className="group flex items-start justify-between border-b border-border pb-6 transition-colors duration-300 hover:border-accent/30">
-                    <div>
-                      <h3 className="text-base font-semibold text-foreground">
-                        {exp.role}
-                      </h3>
-                      <p className="mt-1 text-sm text-muted">{exp.company}</p>
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-4 top-0 bottom-0 w-px bg-linear-to-b from-accent via-accent to-accent/30" />
+
+              {/* Timeline items */}
+              <div className="space-y-12">
+                {experience.map((exp, index) => (
+                  <ScrollReveal
+                    key={`${exp.role}-${exp.period}`}
+                    delay={0.1 * index}
+                    direction="left"
+                    distance={30}
+                  >
+                    <div className="relative flex items-start gap-8">
+                      {/* Timeline dot */}
+                      <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-accent bg-card">
+                        <div className="h-2 w-2 rounded-full bg-accent" />
+                      </div>
+
+                      {/* Content */}
+                      <div className="min-w-0 flex-1 pb-4">
+                        <div className="flex items-start justify-between gap-4">
+                          <div>
+                            <h3 className="text-lg font-semibold text-accent">
+                              {exp.role}
+                            </h3>
+                            <p className="mt-1 text-sm font-medium text-foreground">
+                              {exp.company}
+                            </p>
+                          </div>
+                          <span className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted">
+                            {exp.period}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <span className="shrink-0 text-xs text-muted">
-                      {exp.period}
-                    </span>
-                  </div>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                ))}
+              </div>
             </div>
           </ParallaxWrapper>
         </div>

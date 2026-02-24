@@ -74,7 +74,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              Ruel Miguel Diaz
+              Ruel Miguel <span className="text-accent">Diaz</span>
             </motion.span>
           </motion.h1>
 
