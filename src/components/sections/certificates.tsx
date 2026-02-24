@@ -9,10 +9,8 @@ import Lightbox from "@/components/lightbox";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { certificates } from "@/lib/certificates";
 
-/* Split certificates into two rows for the marquee */
-const half = Math.ceil(certificates.length / 2);
-const row1 = certificates.slice(0, half);
-const row2 = certificates.slice(half);
+/* Single row looping all certificates */
+const allCerts = certificates;
 
 function CertCard({
   cert,
@@ -136,33 +134,19 @@ export default function Certificates() {
 
         {/* Marquee rows — full width, overflow hidden */}
         <div className="mt-16 flex flex-col gap-4">
-          {/* Row 1 — scrolls left */}
+          {/* scrolls left with all certificates */}
           <div className="marquee-container group/marquee">
             <div className={`marquee-track marquee-left ${prefersReducedMotion ? "marquee-paused" : ""}`}>
-              {[...row1, ...row1, ...row1, ...row1].map((cert, i) => (
+              {[...allCerts, ...allCerts, ...allCerts, ...allCerts].map((cert, i) => (
                 <CertCard
-                  key={`r1-${i}`}
+                  key={`cert-${i}`}
                   cert={cert}
-                  index={i % row1.length}
+                  index={i % allCerts.length}
                   onClick={() => openCert(certificates.indexOf(cert))}
                 />
               ))}
             </div>
           </div>
-
-          {/* Row 2 — scrolls right */}
-          {/* <div className="marquee-container group/marquee">
-            <div className={`marquee-track marquee-right ${prefersReducedMotion ? "marquee-paused" : ""}`}>
-              {[...row2, ...row2, ...row2, ...row2].map((cert, i) => (
-                <CertCard
-                  key={`r2-${i}`}
-                  cert={cert}
-                  index={i % row2.length}
-                  onClick={() => openCert(certificates.indexOf(cert))}
-                />
-              ))}
-            </div>
-          </div> */}
         </div>
       </section>
 
