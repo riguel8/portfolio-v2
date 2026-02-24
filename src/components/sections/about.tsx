@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
 import ScrollReveal from "@/components/scroll-reveal";
 import ParallaxWrapper from "@/components/parallax-wrapper";
@@ -30,9 +30,17 @@ const experience = [
   { role: "Web Developer", company: "Freelance / Commission", period: "Jun 2023 - Present" },
 ];
 
+const volunteerExperience = [
+  { role: "Developer & Designer", company: "Techstars Startup Weekend Bukidnon 6", period: "" },
+  // { role: "Front End Developer", company: "Bukidnon Business Summit (BUKFEST 2025)", period: "" },
+  { role: "Stage Manager Committee Member", company: "NASA Space Apps Challenge 2024", period: "" },
+  { role: "Stage Manager Committee Member", company: "Bukidnon Inter-College Technology Competition (BICTC)", period: "" },
+];
+
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const [showVolunteer, setShowVolunteer] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -208,7 +216,7 @@ export default function About() {
           <ParallaxWrapper speed={-0.12} axis="horizontal">
             <ScrollReveal>
               <p className="mb-8 font-mono text-xs tracking-widest text-muted uppercase">
-                Experience
+                Work Experience
               </p>
             </ScrollReveal>
             <div className="relative">
@@ -251,6 +259,95 @@ export default function About() {
                 ))}
               </div>
             </div>
+
+            {/* Volunteer timeline — all items collapsible */}
+            <AnimatePresence>
+              {showVolunteer && (
+                <motion.div
+                  id="volunteer-experience"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  {/* Volunteer Experience Header */}
+                  <div className="flex items-start justify-between gap-4 mt-12 mb-8">
+                    <div>
+                      <p className="font-mono text-xs tracking-widest text-muted uppercase">
+                        Volunteer Experience
+                      </p>
+                      <p className="mt-1 text-sm text-muted">
+                        DEVCON Philippines – Bukidnon Chapter
+                      </p>
+                    </div>
+                    <span className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted">
+                      2024 - Present
+                    </span>
+                  </div>
+
+                  {/* Volunteer timeline */}
+                  <div className="relative">
+                    {/* Timeline line */}
+                    <div className="absolute left-4 top-0 bottom-0 w-px bg-linear-to-b from-accent via-accent to-accent/30" />
+
+                    {/* Volunteer items */}
+                    <div className="space-y-12">
+                      {volunteerExperience.map((vol, index) => (
+                        <ScrollReveal
+                          key={`${vol.role}-${index}`}
+                          delay={0.1 * index}
+                          direction="left"
+                          distance={30}
+                        >
+                          <div className="relative flex items-start gap-8">
+                            {/* Timeline dot */}
+                            <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-accent bg-card">
+                              <div className="h-2 w-2 rounded-full bg-accent" />
+                            </div>
+
+                            {/* Content */}
+                            <div className="min-w-0 flex-1 pb-4">
+                              <div className="flex items-start justify-between gap-4">
+                                <div>
+                                  <h3 className="text-lg font-semibold text-accent">
+                                    {vol.role}
+                                  </h3>
+                                  <p className="mt-1 text-sm font-medium text-foreground">
+                                    {vol.company}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </ScrollReveal>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <ScrollReveal>
+              <button
+                onClick={() => setShowVolunteer(!showVolunteer)}
+                className="group mt-6 flex items-center gap-2 font-mono text-xs tracking-widest text-muted uppercase transition-colors duration-300 hover:text-accent"
+                aria-expanded={showVolunteer}
+                aria-controls="volunteer-experience"
+              >
+                <span>See {showVolunteer ? 'less' : 'more'}</span>
+                <svg
+                  className={`h-3 w-3 transition-transform duration-300 ${showVolunteer ? 'rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </ScrollReveal>
           </ParallaxWrapper>
         </div>
       </div>
