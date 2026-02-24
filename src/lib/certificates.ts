@@ -8,6 +8,34 @@ export interface Certificate {
 
 export const certificates: Certificate[] = [
   {
+    title: "Data Analytics Essentials",
+    image: "/assets/images/cert/Data-Analytics-Essentials.png",
+    category: "technical",
+    issuer: "Cisco",
+    logo: "/assets/images/cisco.png",
+  },
+  {
+    title: "Introduction to Data Science",
+    image: "/assets/images/cert/Introduction-to-Data-Science.png",
+    category: "technical",
+    issuer: "Cisco",
+    logo: "/assets/images/cisco.png",
+  },
+  {
+    title: "C++ Essentials 2",
+    image: "/assets/images/cert/C++-essentials-2.png",
+    category: "technical",
+    issuer: "Cisco",
+    logo: "/assets/images/cisco.png",
+  },
+  {
+    title: "C++ Essentials 1",
+    image: "/assets/images/cert/C++-essentials-1.png",
+    category: "technical",
+    issuer: "Cisco",
+    logo: "/assets/images/cisco.png",
+  },
+  {
     title: "Python Essentials 2",
     image: "/assets/images/cert/Python-essentials-2.png",
     category: "technical",
@@ -38,6 +66,20 @@ export const certificates: Certificate[] = [
   {
     title: "JavaScript Essentials 1",
     image: "/assets/images/cert/Javascript-essentials-1.png",
+    category: "technical",
+    issuer: "Cisco",
+    logo: "/assets/images/cisco.png",
+  },
+  {
+    title: "CSS Essentials",
+    image: "/assets/images/cert/CSS-essentials.png",
+    category: "technical",
+    issuer: "Cisco",
+    logo: "/assets/images/cisco.png",
+  },
+  {
+    title: "HTML Essentials",
+    image: "/assets/images/cert/HTML-essentials.png",
     category: "technical",
     issuer: "Cisco",
     logo: "/assets/images/cisco.png",
