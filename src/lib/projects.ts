@@ -25,12 +25,12 @@ export const projects: Project[] = [
   // ── Web Applications ──
   {
     id: "01",
-    title: "Maison",
-    category: "E-Commerce Frontend",
+    title: "Maison(AI-Inspired)",
+    category: "E-commerce Website (Frontend)",
     platform: "web",
     link: "",
     description:
-      "Developed a frontend application for E-commerce website using React.js + TypeScript + Tailwind CSS.",
+      "Developed a modern, scalable, and AI-inspired frontend application for an E-commerce platform using React.js, TypeScript, and Tailwind CSS.",
     tech: [
       { icon: "devicon:react" },
       { icon: "devicon:typescript" },
@@ -47,7 +47,7 @@ export const projects: Project[] = [
   {
     id: "02",
     title: "FARMURA Admin",
-    category: "Admin Dashboard",
+    category: "Admin Dashboard (Frontend)",
     platform: "web",
     link: "",
     description:
@@ -68,7 +68,7 @@ export const projects: Project[] = [
   {
     id: "03",
     title: "Journal of Science",
-    category: "Web Application",
+    category: "Web Application (Fullstack)",
     platform: "web",
     link: "",
     description:
