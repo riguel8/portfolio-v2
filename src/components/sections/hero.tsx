@@ -98,7 +98,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <a
-              href="/assets/files/myresume.pdf"
+              href="/assets/files/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-background transition-transform duration-300 hover:scale-105"
@@ -125,7 +125,7 @@ export default function Hero() {
               View Resume
             </a>
             <a
-              href="/assets/files/myresume.pdf"
+              href="/assets/files/resume.pdf"
               download
               className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium text-foreground transition-all duration-300 hover:border-accent/40 hover:bg-accent/5"
             >
