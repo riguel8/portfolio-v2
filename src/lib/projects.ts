@@ -179,9 +179,14 @@ export const projects: Project[] = [
       { icon: "devicon:mysql" },
       { icon: "devicon:bootstrap" },
     ],
-    thumbnail: "/assets/images/projects/404.png",
+    thumbnail: "/assets/images/projects/BoardPro/01.png",
     images: [
-      "/assets/images/projects/404.png",
+      "/assets/images/projects/BoardPro/login.png",
+      "/assets/images/projects/BoardPro/dashboard.png",
+      "/assets/images/projects/BoardPro/01.png",
+      "/assets/images/projects/BoardPro/02.png",
+      "/assets/images/projects/BoardPro/03.png",
+
     ],
   },
   {
