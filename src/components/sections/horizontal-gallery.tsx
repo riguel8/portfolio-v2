@@ -214,9 +214,13 @@ export default function HorizontalGallery() {
                   >
                     {(index + 1).toString().padStart(2, '0')}
                   </span>
-                  <span className="rounded-full border border-border px-3 py-1 text-xs text-muted">
-                    {project.category}
-                  </span>
+                  <div className="flex gap-2">
+                    {project.category.map((cat, idx) => (
+                      <span key={idx} className="rounded-full border border-border px-3 py-1 text-xs text-muted">
+                        {cat}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 <h3 className="text-xl font-bold tracking-tight text-foreground md:text-2xl">
                   {project.title}

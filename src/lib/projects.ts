@@ -1,9 +1,10 @@
 import { link } from "fs";
+import { platform } from "os";
 
 export interface Project {
   id: string;
   title: string;
-  category: string;
+  category: string[];
   platform: "web" | "desktop" | "design";
   description: string;
   link: string;
@@ -22,11 +23,33 @@ export const platformLabels: Record<Platform, string> = {
 };
 
 export const projects: Project[] = [
-  // ── Web Applications ──
   {
     id: "01",
+    title: "Migeru Build Engineers",
+    category: ["Construction Website", "Project"],
+    platform: "web",
+    link: "",
+    description:
+      "A premium construction company website built with modern web technologies, showcasing Philippine localization and premium UI design.",
+    tech: [
+      { icon: "devicon:react" },
+      { icon: "devicon:typescript" },
+      { icon: "devicon:tailwindcss" },
+    ],
+    thumbnail: "/assets/images/projects/Migeru/01.png",
+    images: [
+      "/assets/images/projects/Migeru/01.png",
+      "/assets/images/projects/Migeru/02.png",
+      "/assets/images/projects/Migeru/03.png",
+      "/assets/images/projects/Migeru/04.png",
+      "/assets/images/projects/Migeru/05.png",
+    ],
+  },
+  // ── Web Applications ──
+  {
+    id: "02",
     title: "Maison(AI-Inspired)",
-    category: "E-commerce Website (Frontend)",
+    category: ["E-commerce Website (Frontend)", "Project"],
     platform: "web",
     link: "",
     description:
@@ -45,9 +68,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "02",
+    id: "03",
     title: "FARMURA Admin",
-    category: "Admin Dashboard (Frontend)",
+    category: ["Admin Dashboard (Frontend)", "Project"],
     platform: "web",
     link: "",
     description:
@@ -66,9 +89,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "03",
+    id: "04",
     title: "Journal of Science",
-    category: "Web Application (Fullstack)",
+    category: ["Web Application (Fullstack)", "Project"],
     platform: "web",
     link: "",
     description:
@@ -87,9 +110,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "04",
+    id: "05",
     title: "Web-Based Appointment & Management System",
-    category: "Capstone Project",
+    category: ["Capstone Project"],
     platform: "web",
     link: "",
     description:
@@ -105,9 +128,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "05",
+    id: "06",
     title: "Image Editor",
-    category: "Web Application",
+    category: ["Web Application", "Work"],
     platform: "web",
     link: "",
     description:
@@ -123,9 +146,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "06",
+    id: "07",
     title: "Boarding House Management System",
-    category: "Web Application",
+    category: ["Web Application", "Project"],
     platform: "web",
     link: "",
     description:
@@ -141,9 +164,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "07",
+    id: "08",
     title: "Document Management System",
-    category: "Web Application",
+    category: ["Web Application", "Project"],
     platform: "web",
     link: "",
     description:
@@ -161,9 +184,9 @@ export const projects: Project[] = [
 
   // ── Desktop Applications ──
   {
-    id: "08",
+    id: "09",
     title: "Hotel Reservation System",
-    category: "Desktop Application",
+    category: ["Desktop Application", "Project"],
     platform: "desktop",
     link: "",
     description:
@@ -178,9 +201,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "09",
+    id: "10",
     title: "POS and Inventory System",
-    category: "Desktop Application",
+    category: ["Desktop Application", "Project"],
     platform: "desktop",
     link: "",
     description:
@@ -197,9 +220,9 @@ export const projects: Project[] = [
 
   // ── UI/UX Design ──
   {
-    id: "10",
+    id: "11",
     title: "FARMURA",
-    category: "UI/UX Design",
+    category: ["UI/UX Design", "Work"],
     platform: "design",
     link: "",
     description:
@@ -218,9 +241,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "11",
+    id: "12",
     title: "Wanderly",
-    category: "UI/UX Design",
+    category: ["UI/UX Design", "Project"],
     platform: "design",
     link: "https://www.figma.com/design/mG5mc4sgmxZv2qExdqujop/Wanderly?node-id=0-1&p=f&t=FuXWoWQDMSUCn6cu-0",
     description:
@@ -236,9 +259,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "12",
+    id: "13",
     title: "Wine Price Edge Solutions",
-    category: "UI/UX Design",
+    category: ["UI/UX Design", "Work"],
     platform: "design",
     link: "https://www.figma.com/design/UKhhkqyYvLsDniZqskzdHK/Wine-App?node-id=1-1446&p=f&t=m9UNwTWPuaFvWSw0-0",
     description:
@@ -257,9 +280,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "13",
+    id: "14",
     title: "DM Resto",
-    category: "UI/UX Design",
+    category: ["UI/UX Design", "Project"],
     platform: "design",
     link: "https://www.figma.com/design/O8ta1Cgja5nEQCKBNeHoVN/DM-Resto?node-id=1-1201&p=f&t=POhLUAOyTDRIjXAy-0",
     description:
@@ -277,9 +300,9 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "14",
+    id: "15",
     title: "DateDash App",
-    category: "UI/UX Design",
+    category: ["UI/UX Design", "Project"],
     platform: "design",
     link: "https://www.figma.com/design/EzC614eVRUmXeG14LJRPHy/DateDash?node-id=0-1&p=f&t=Skwi4D7FCJOYEQLa-0",
     description:

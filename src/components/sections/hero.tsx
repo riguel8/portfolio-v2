@@ -60,7 +60,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            Web &amp; Software Developer | UI/UX Designer
+            Web Developer | UI/UX Designer
           </motion.p>
 
           {/* Main heading */}
@@ -85,9 +85,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
-            I design, develop, and maintain software applications &mdash;
-            with hands-on experience in front-end, back-end, database management,
-            and UI/UX design.
+            I design, develop, and maintain web applications with hands-on experience in front-end, back-end, database management, machine learning, and UI/UX design.
           </motion.p>
 
           {/* Resume buttons */}
