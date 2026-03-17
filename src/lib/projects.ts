@@ -36,12 +36,12 @@ export const projects: Project[] = [
       { icon: "devicon:typescript" },
       { icon: "devicon:tailwindcss" },
     ],
-    thumbnail: "/assets/images/projects/deru/01.png",
+    thumbnail: "/assets/images/projects/Deru/01.png",
     images: [
-      "/assets/images/projects/deru/01.png",
-      "/assets/images/projects/deru/02.png",
-      "/assets/images/projects/deru/03.png",
-      "/assets/images/projects/deru/04.png",
+      "/assets/images/projects/Deru/01.png",
+      "/assets/images/projects/Deru/02.png",
+      "/assets/images/projects/Deru/03.png",
+      "/assets/images/projects/Deru/04.png",
     ],
   },
   // ── Web Applications ──
