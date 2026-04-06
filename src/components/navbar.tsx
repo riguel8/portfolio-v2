@@ -63,7 +63,7 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="/assets/files/Resume.pdf"
+              href="/assets/files/myResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-accent px-5 py-2 text-xs font-bold text-background transition-transform duration-300 hover:scale-105"

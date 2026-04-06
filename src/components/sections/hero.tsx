@@ -66,7 +66,7 @@ export default function Hero() {
           {/* Main heading */}
           <motion.h1
             style={prefersReducedMotion ? {} : { y: titleY }}
-            className="gpu-accelerated text-5xl font-bold leading-[1.05] tracking-tighter text-foreground sm:text-7xl md:text-8xl lg:text-9xl"
+            className="gpu-accelerated text-4xl font-bold leading-[1.05] tracking-tighter text-foreground sm:text-4xl md:text-6xl lg:text-8xl"
           >
             <motion.span
               className="block"
@@ -96,7 +96,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <a
-              href="/assets/files/Resume.pdf"
+              href="/assets/files/myResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-background transition-transform duration-300 hover:scale-105"
@@ -123,7 +123,7 @@ export default function Hero() {
               View Resume
             </a>
             <a
-              href="/assets/files/Resume.pdf"
+              href="/assets/files/myResume.pdf"
               download
               className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium text-foreground transition-all duration-300 hover:border-accent/40 hover:bg-accent/5"
             >
