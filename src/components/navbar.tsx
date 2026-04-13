@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { Icon } from "@iconify/react";
 
 const navLinks = [
   { label: "Work", href: "#work" },
@@ -12,45 +13,110 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+    const onScroll = () => {
+      if (!ticking.current) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 110);
+          ticking.current = false;
+        });
+        ticking.current = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <motion.header
-      className="fixed top-0 left-0 z-50 w-full mix-blend-difference"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none"
+      style={{
+        padding: scrolled ? "14px 24px" : "14px 24px",
+        transition: "padding 0.5s cubic-bezier(0.4,0,0.2,1)",
+      }}
     >
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-12"
+        className="pointer-events-auto flex items-center justify-between w-full"
         role="navigation"
         aria-label="Main navigation"
+        style={{
+          maxWidth:      scrolled ? "580px"                   : "1100px",
+          height:        scrolled ? "56px"                    : "56px",
+          padding:       scrolled ? "0 20px"                  : "0 20px",
+          borderRadius:  scrolled ? "9999px"                  : "0px",
+          background:    scrolled ? "rgba(18,18,20,0.88)"     : "transparent",
+          borderColor:   scrolled ? "rgba(255,255,255,0.08)"  : "transparent",
+          borderWidth:   "0.5px",
+          borderStyle:   "solid",
+          boxShadow:     scrolled 
+            ? "0 2px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.04) inset"
+            : "none",
+          backdropFilter: scrolled ? "blur(2px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(2px)" : "none",
+          transition: [
+            "max-width 0.5s cubic-bezier(0.4,0,0.2,1)",
+            "height 0.5s cubic-bezier(0.4,0,0.2,1)",
+            "padding 0.5s cubic-bezier(0.4,0,0.2,1)",
+            "border-radius 0.5s cubic-bezier(0.4,0,0.2,1)",
+            "background 0.45s cubic-bezier(0.4,0,0.2,1)",
+            "border-color 0.45s cubic-bezier(0.4,0,0.2,1)",
+            "box-shadow 0.45s cubic-bezier(0.4,0,0.2,1)",
+          ].join(", "),
+        }}
       >
-        <a
-          href="#"
-          className="flex items-center gap-2.5 text-lg font-bold tracking-tight text-white"
-          aria-label="Home"
-        >
-          <Image
-            src="/assets/images/2x2.png"
-            alt="Ruel Miguel Diaz"
-            width={32}
-            height={32}
-            className="rounded-full object-cover"
-            priority
-          />
-          Riguel<span className="text-accent">.</span>
+        {/* ── Logo ── */}
+        <a href="#" className="flex items-center gap-2.5 shrink-0 no-underline">
+          <div
+            style={{
+            
+              transition: "width 0.5s cubic-bezier(0.4,0,0.2,1), height 0.5s cubic-bezier(0.4,0,0.2,1), border-radius 0.5s cubic-bezier(0.4,0,0.2,1)",
+              overflow: "hidden",
+              flexShrink: 0,
+            }}
+          >
+            <Image
+              src="/assets/images/LogoKO.png"
+              alt="Ruel Miguel Diaz"
+              width={32}
+              height={32}
+              priority
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div
+            style={{
+              overflow: "hidden",
+              maxWidth: scrolled ? "0px" : "140px",
+              opacity:  scrolled ? 0     : 1,
+              transition: "max-width 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {/* <Image
+              src="/assets/images/2x2.png"
+              alt="Avatar"
+              width={24}
+              height={24}
+              priority
+              className="rounded-full object-cover"
+            /> */}
+            <span
+              className="whitespace-nowrap"
+              style={{ fontSize: "13px", fontWeight: 500, color: "#fff", lineHeight: 1.2 }}
+            >
+              Riguel•
+            </span>
+            
+          </div>
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        {/* ── Links ── */}
+        <ul className="hidden md:flex items-center list-none gap-5">
           {navLinks.map((link) => (
             <li key={link.label}>
               <a
@@ -62,19 +128,38 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <a
-              href="/assets/files/myResume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-accent px-5 py-2 text-xs font-bold text-background transition-transform duration-300 hover:scale-105"
-            >
-              Resume
-            </a>
+        {/* ── CTA ── */}
+        <a
+          href="/assets/files/myResume.pdf"
+          download
+          className="inline-flex items-center gap-2 rounded-full border-2 bg-white px-5 py-2 text-xs font-medium text-black hover:bg-black hover:text-white hover:border-white hover:border-2"
+          style={{
+            transition: [
+              "padding 0.5s cubic-bezier(0.4,0,0.2,1)",
+              "font-size 0.5s cubic-bezier(0.4,0,0.2,1)",
+              "opacity 0.2s ease",
+            ].join(", "),
+          }}
+          onMouseEnter={e => {
+            (e.currentTarget as HTMLElement).style.opacity = "0.88";
+            (e.currentTarget as HTMLElement).style.transform = "scale(1.02)";
+          }}
+          onMouseLeave={e => {
+            (e.currentTarget as HTMLElement).style.opacity = "1";
+            (e.currentTarget as HTMLElement).style.transform = "scale(1)";
+          }}
+        >
+          Download Resume&nbsp;
+          <span
+            className="inline-block transition-transform duration-200 group-hover:translate-x-0.5"
+          >
+            <Icon icon="solar:arrow-right-line-duotone" className="h-4 w-4" />
+          </span>
+        </a>
           </li>
         </ul>
-
         <AnimatePresence>
-          {isScrolled && (
+          {scrolled && (
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}

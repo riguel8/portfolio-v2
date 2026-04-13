@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { Icon } from "@iconify/react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
@@ -25,7 +26,7 @@ export default function Hero() {
       className="section-dots relative flex h-[200vh] items-start justify-center"
       aria-label="Hero"
     >
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
+      <div className="sticky top-14 flex h-screen w-full items-center justify-center overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-background" />
 
@@ -55,7 +56,7 @@ export default function Hero() {
         >
           {/* Eyebrow */}
           <motion.p
-            className="mb-6 font-mono text-sm tracking-widest text-muted uppercase"
+            className="font-mono mb-8 text-sm tracking-widest text-muted uppercase"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -99,30 +100,12 @@ export default function Hero() {
               href="/assets/files/myResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-background transition-transform duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-full border-2 bg-accent px-7 py-3.5 text-sm font-bold text-background hover:bg-background hover:text-foreground"
             >
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                />
-              </svg>
+              <Icon icon="solar:eye-line-duotone" className="h-4 w-4" />
               View Resume
             </a>
-            <a
+            {/* <a
               href="/assets/files/myResume.pdf"
               download
               className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium text-foreground transition-all duration-300 hover:border-accent/40 hover:bg-accent/5"
@@ -142,7 +125,7 @@ export default function Hero() {
                 />
               </svg>
               Download Resume
-            </a>
+            </a> */}
           </motion.div>
 
           {/* Scroll indicator */}

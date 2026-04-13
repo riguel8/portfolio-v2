@@ -97,7 +97,7 @@ export default function Contact() {
                     <div>
                       <div className="flex items-center gap-2">
                         <Icon
-                          icon="lucide:phone"
+                          icon="streamline-stickies-color:mobile-phone-duo"
                           className="h-5 w-5 text-muted"
                           aria-hidden="true"
                         />
@@ -119,7 +119,7 @@ export default function Contact() {
                     <div>
                       <div className="flex items-center gap-2">
                         <Icon
-                          icon="lucide:mail"
+                          icon="streamline-stickies-color:mail-duo"
                           className="h-5 w-5 text-muted"
                           aria-hidden="true"
                         />
@@ -164,20 +164,7 @@ export default function Contact() {
                         <span className="text-lg font-medium text-foreground transition-colors group-hover:text-accent">
                           {link.label}
                         </span>
-                        <svg
-                          className="h-4 w-4 text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M7 17L17 7M17 7H7M17 7v10"
-                          />
-                        </svg>
+                        <Icon icon="solar:arrow-right-up-line-duotone" className="h-4 w-4" />
                       </a>
                     </li>
                   </ScrollReveal>
@@ -193,7 +180,7 @@ export default function Contact() {
                 &copy; {new Date().getFullYear()} RMD Portfolio. All rights reserved.
               </p>
               <p className="text-sm text-muted">
-                Built with Next.js and Framer Motion
+                Built with Next.js, Framer Motion and GSAP
               </p>
             </div>
           </ScrollReveal>
