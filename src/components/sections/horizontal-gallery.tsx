@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useMemo } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects, platformLabels, type Platform } from "@/lib/projects";
@@ -14,6 +15,51 @@ if (typeof window !== "undefined") {
 }
 
 const platforms: Platform[] = ["all", "web", "desktop", "design"];
+
+// Animation variants for smooth content transitions
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.04,
+      staggerDirection: -1
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20,
+    scale: 0.95
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: { 
+      duration: 0.4, 
+      ease: "easeOut" as const
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    y: -10,
+    scale: 0.98,
+    transition: { 
+      duration: 0.2, 
+      ease: "easeInOut" as const
+    }
+  }
+};
 
 export default function HorizontalGallery() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -100,66 +146,92 @@ export default function HorizontalGallery() {
             A curated collection of projects spanning web development,
             software engineering, and UI/UX design.
           </p>
-          {/* Platform filter */}
-          <div className="mb-8 flex flex-wrap gap-2">
-            {platforms.map((p) => (
-              <button
-                key={p}
-                onClick={() => setActivePlatform(p)}
-                className={`rounded-full border px-3 py-2 text-xs font-medium transition-all duration-300 ${
-                  activePlatform === p
-                    ? "border-accent bg-accent text-background"
-                    : "border-border text-muted hover:border-accent/40 hover:text-foreground"
-                }`}
-              >
-                {platformLabels[p]}
-              </button>
-            ))}
-          </div>
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
-            {filteredProjects.map((project, index) => (
-              <article
-                key={project.id}
-                className="group cursor-pointer rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
-                onClick={() => openPreview(project.images, project.title, project.link)}
-                role="button"
-                aria-label={`View ${project.title} project`}
-              >
-                <div className="relative aspect-video overflow-hidden bg-card">
-                  <Image
-                    src={project.thumbnail}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                    priority={index < 2}
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="flex flex-wrap gap-1.5 mb-2">
-                    {project.category.map((cat, idx) => (
-                      <span key={idx} className="rounded-full border border-border px-2 py-0.5 text-[10px] text-muted">
-                        {cat}
-                      </span>
-                    ))}
+          {/* Platform filter with animated indicator */}
+          <LayoutGroup>
+            <div className="mb-8 flex flex-wrap gap-2">
+              {platforms.map((p) => (
+                <motion.button
+                  key={p}
+                  onClick={() => setActivePlatform(p)}
+                  className={`relative rounded-full border px-3 py-2 text-xs font-medium transition-colors duration-200 ${
+                    activePlatform === p
+                      ? "border-accent text-background"
+                      : "border-border text-muted hover:border-accent/40 hover:text-foreground active:scale-95"
+                  }`}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.1 }}
+                >
+                  {activePlatform === p && (
+                    <motion.span
+                      layoutId="mobile-tab-indicator"
+                      className="absolute inset-0 rounded-full bg-accent"
+                      transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                    />
+                  )}
+                  <span className="relative z-10">{platformLabels[p]}</span>
+                </motion.button>
+              ))}
+            </div>
+          </LayoutGroup>
+
+          {/* Animated project grid */}
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={activePlatform}
+              variants={prefersReducedMotion ? undefined : containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="grid gap-6 grid-cols-1 sm:grid-cols-2"
+            >
+              {filteredProjects.map((project, index) => (
+                <motion.article
+                  key={project.id}
+                  variants={prefersReducedMotion ? undefined : cardVariants}
+                  className="group cursor-pointer rounded-xl border border-border bg-card overflow-hidden transition-shadow duration-300 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 active:scale-[0.98]"
+                  onClick={() => openPreview(project.images, project.title, project.link)}
+                  role="button"
+                  aria-label={`View ${project.title} project`}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="relative aspect-video overflow-hidden bg-card">
+                    <Image
+                      src={project.thumbnail}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      priority={index < 2}
+                    />
                   </div>
-                  <h3 className="text-base font-semibold text-foreground mb-1">{project.title}</h3>
-                  <p className="text-xs text-muted line-clamp-2">{project.description}</p>
-                  <div className="flex items-center gap-1.5 mt-3">
-                    {project.tech.slice(0, 4).map((tech) => (
-                      <div
-                        key={tech.icon}
-                        className="flex h-6 w-6 items-center justify-center rounded-md border border-border bg-background"
-                        title={tech.icon.split(':')[1] || tech.icon}
-                      >
-                        <Icon icon={tech.icon} className="text-sm" aria-hidden="true" />
-                      </div>
-                    ))}
+                  <div className="p-4">
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {project.category.map((cat, idx) => (
+                        <span key={idx} className="rounded-full border border-border px-2 py-0.5 text-[10px] text-muted">
+                          {cat}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="text-base font-semibold text-foreground mb-1">{project.title}</h3>
+                    <p className="text-xs text-muted line-clamp-2">{project.description}</p>
+                    <div className="flex items-center gap-1.5 mt-3">
+                      {project.tech.slice(0, 4).map((tech) => (
+                        <motion.div
+                          key={tech.icon}
+                          className="flex h-6 w-6 items-center justify-center rounded-md border border-border bg-background"
+                          title={tech.icon.split(':')[1] || tech.icon}
+                          whileHover={{ scale: 1.1, y: -2 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Icon icon={tech.icon} className="text-sm" aria-hidden="true" />
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
+                </motion.article>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
         <Lightbox
           images={lightboxImages}

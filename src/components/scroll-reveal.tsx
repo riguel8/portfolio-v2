@@ -1,17 +1,19 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface ScrollRevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  direction?: "up" | "down" | "left" | "right";
+  direction?: "up" | "down" | "left" | "right" | "none";
   distance?: number;
   duration?: number;
+  scale?: number;
+  once?: boolean;
+  blur?: boolean;
 }
 
 export default function ScrollReveal({
@@ -19,13 +21,16 @@ export default function ScrollReveal({
   className = "",
   delay = 0,
   direction = "up",
-  distance = 60,
-  duration = 0.8,
+  distance = 40,
+  duration = 0.6,
+  scale = 1,
+  once = true,
+  blur = false,
 }: ScrollRevealProps) {
   const [ref, isIntersecting] = useIntersectionObserver<HTMLDivElement>({
-    threshold: 0.1,
-    rootMargin: "-50px",
-    triggerOnce: true,
+    threshold: 0.15,
+    rootMargin: "-30px",
+    triggerOnce: once,
   });
 
   const prefersReducedMotion = useReducedMotion();
@@ -35,6 +40,7 @@ export default function ScrollReveal({
     down: { x: 0, y: -distance },
     left: { x: distance, y: 0 },
     right: { x: -distance, y: 0 },
+    none: { x: 0, y: 0 },
   };
 
   const offset = directionMap[direction];
@@ -50,17 +56,35 @@ export default function ScrollReveal({
   return (
     <motion.div
       ref={ref}
-      className={className}
-      initial={{ opacity: 0, x: offset.x, y: offset.y }}
+      className={`${className} will-change-transform`}
+      initial={{ 
+        opacity: 0, 
+        x: offset.x, 
+        y: offset.y,
+        scale: scale < 1 ? scale : 1,
+        filter: blur ? "blur(8px)" : "blur(0px)"
+      }}
       animate={
         isIntersecting
-          ? { opacity: 1, x: 0, y: 0 }
-          : { opacity: 0, x: offset.x, y: offset.y }
+          ? { 
+              opacity: 1, 
+              x: 0, 
+              y: 0,
+              scale: 1,
+              filter: "blur(0px)"
+            }
+          : { 
+              opacity: 0, 
+              x: offset.x, 
+              y: offset.y,
+              scale: scale < 1 ? scale : 1,
+              filter: blur ? "blur(8px)" : "blur(0px)"
+            }
       }
       transition={{
         duration,
         delay,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
       {children}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Icon } from "@iconify/react";
 
 const navLinks = [
@@ -12,10 +12,151 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
+// Animation variants for smooth, professional transitions
+const menuVariants = {
+  hidden: { 
+    opacity: 0,
+    transition: { duration: 0.2, ease: "easeInOut" as const }
+  },
+  visible: { 
+    opacity: 1,
+    transition: { 
+      duration: 0.3, 
+      ease: "easeOut" as const,
+      when: "beforeChildren" as const,
+      staggerChildren: 0.06
+    }
+  },
+  exit: { 
+    opacity: 0,
+    transition: { 
+      duration: 0.25, 
+      ease: "easeInOut" as const,
+      when: "afterChildren" as const,
+      staggerChildren: 0.03,
+      staggerDirection: -1
+    }
+  }
+};
+
+const menuItemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 24,
+    transition: { duration: 0.2, ease: "easeInOut" as const }
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" as const }
+  },
+  exit: { 
+    opacity: 0, 
+    y: -12,
+    transition: { duration: 0.2, ease: "easeInOut" as const }
+  }
+};
+
+const ctaVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" as const, delay: 0.25 }
+  },
+  exit: { 
+    opacity: 0, 
+    y: 10, 
+    scale: 0.98,
+    transition: { duration: 0.2, ease: "easeInOut" as const }
+  }
+};
+
+// Animated hamburger button component
+function AnimatedMenuButton({ 
+  isOpen, 
+  onClick,
+  scrolled 
+}: { 
+  isOpen: boolean; 
+  onClick: () => void;
+  scrolled: boolean;
+}) {
+  return (
+    <motion.button
+      onClick={onClick}
+      className="flex md:hidden h-10 w-10 items-center justify-center rounded-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      style={{
+        background: scrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.08)",
+        transition: "background 0.3s ease",
+      }}
+      aria-label={isOpen ? "Close menu" : "Open menu"}
+      aria-expanded={isOpen}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {/* Top line - morphs to X */}
+        <motion.line
+          x1="4"
+          x2="20"
+          y1="6"
+          y2="6"
+          animate={{
+            x1: isOpen ? 6 : 4,
+            x2: isOpen ? 18 : 20,
+            y1: isOpen ? 6 : 6,
+            y2: isOpen ? 18 : 6,
+          }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        />
+        {/* Middle line - fades out */}
+        <motion.line
+          x1="4"
+          x2="20"
+          y1="12"
+          y2="12"
+          animate={{
+            opacity: isOpen ? 0 : 1,
+            x1: isOpen ? 12 : 4,
+            x2: isOpen ? 12 : 20,
+          }}
+          transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+        />
+        {/* Bottom line - morphs to X */}
+        <motion.line
+          x1="4"
+          x2="20"
+          y1="18"
+          y2="18"
+          animate={{
+            x1: isOpen ? 6 : 4,
+            x2: isOpen ? 18 : 20,
+            y1: isOpen ? 18 : 18,
+            y2: isOpen ? 6 : 18,
+          }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        />
+      </svg>
+    </motion.button>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const ticking = useRef(false);
+  const prefersReducedMotion = useReducedMotion();
 
   const closeMobileMenu = useCallback(() => {
     setMobileMenuOpen(false);
@@ -56,17 +197,19 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none"
+      className="fixed top-0 left-0 right-0 flex justify-center pointer-events-none"
       style={{
+        zIndex: 10000,
         padding: scrolled ? "14px 24px" : "14px 24px",
         transition: "padding 0.5s cubic-bezier(0.4,0,0.2,1)",
       }}
     >
       <nav
-        className="pointer-events-auto flex items-center justify-between w-full"
+        className="pointer-events-auto relative flex items-center justify-between w-full"
         role="navigation"
         aria-label="Main navigation"
         style={{
+          zIndex: 100,
           maxWidth:      scrolled ? "580px"                   : "1100px",
           height:        scrolled ? "56px"                    : "56px",
           padding:       scrolled ? "0 20px"                  : "0 20px",
@@ -165,100 +308,92 @@ export default function Navbar() {
         </ul>
 
         {/* ── Mobile Menu Button ── */}
-        <button
+        <AnimatedMenuButton 
+          isOpen={mobileMenuOpen} 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="flex md:hidden h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileMenuOpen}
-        >
-          <Icon 
-            icon={mobileMenuOpen ? "solar:close-circle-line-duotone" : "solar:hamburger-menu-line-duotone"} 
-            className="h-5 w-5" 
-          />
-        </button>
+          scrolled={scrolled}
+        />
       </nav>
 
-      {/* Portal-style mobile menu - rendered outside nav for proper stacking */}
+      {/* Portal-style mobile menu - rendered outside nav, BELOW navbar so hamburger button stays in place */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-9999 flex flex-col md:hidden pointer-events-auto"
-            style={{ background: "#0a0a0a" }}
+            variants={prefersReducedMotion ? undefined : menuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="fixed inset-0 flex flex-col md:hidden pointer-events-auto will-change-transform"
+            style={{ 
+              background: "linear-gradient(180deg, #0a0a0a 0%, #0d0d0f 100%)",
+            }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
           >
-            {/* Header with logo and close button */}
-            <div className="flex items-center justify-between p-6">
-              <a href="#" className="flex items-center gap-2" onClick={closeMobileMenu}>
-                <Image
-                  src="/assets/images/LogoKO.png"
-                  alt="Ruel Miguel Diaz"
-                  width={32}
-                  height={32}
-                  priority
-                  className="object-cover"
-                />
-              </a>
-              <button
-                onClick={closeMobileMenu}
-                className="flex h-10 w-10 items-center justify-center text-white/80 transition-colors hover:text-white focus-visible:outline-none"
-                aria-label="Close menu"
-              >
-                <svg
-                  className="h-7 w-7"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Navigation Links */}
-            <nav className="flex-1 flex flex-col justify-center px-8">
-              <ul className="space-y-1">
+            {/* Navigation Links - top padding accounts for fixed navbar */}
+            <nav className="flex-1 flex flex-col justify-center px-8 pt-20">
+              <motion.ul className="space-y-1">
                 {navLinks.map((link, index) => (
                   <motion.li
                     key={link.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.05 + index * 0.07, duration: 0.3 }}
+                    variants={prefersReducedMotion ? undefined : menuItemVariants}
+                    custom={index}
                   >
-                    <a
+                    <motion.a
                       href={link.href}
                       onClick={closeMobileMenu}
-                      className="block text-[2.25rem] font-bold text-white py-2 transition-colors hover:text-accent focus-visible:outline-none focus-visible:text-accent"
+                      className="group relative block text-[2.25rem] font-bold text-white py-3 transition-colors focus-visible:outline-none"
+                      whileHover={{ x: 8 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      {link.label}
-                    </a>
+                      <span className="relative z-10 transition-colors duration-200 group-hover:text-accent group-focus-visible:text-accent">
+                        {link.label}
+                      </span>
+                      <motion.span
+                        className="absolute left-0 top-1/2 -translate-y-1/2 h-1 w-0 rounded-full bg-accent"
+                        initial={{ width: 0 }}
+                        whileHover={{ width: 24 }}
+                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                      />
+                    </motion.a>
                   </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </nav>
 
             {/* Bottom CTA */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              variants={prefersReducedMotion ? undefined : ctaVariants}
               className="px-8 pb-10 space-y-4"
             >
-              <a
+              <motion.a
                 href="/assets/files/myResume.pdf"
                 download
                 onClick={closeMobileMenu}
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-sm font-semibold text-black transition-all duration-200 hover:bg-white/90"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-sm font-semibold text-black shadow-lg shadow-white/10"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 Download Resume
-                <Icon icon="solar:arrow-right-line-duotone" className="h-4 w-4" aria-hidden="true" />
-              </a>
-              <p className="text-center text-sm text-accent">
+                <motion.span
+                  initial={{ x: 0 }}
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Icon icon="solar:arrow-right-line-duotone" className="h-4 w-4" aria-hidden="true" />
+                </motion.span>
+              </motion.a>
+              <motion.p 
+                className="text-center text-sm text-accent"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
                 Philippines
-              </p>
+              </motion.p>
             </motion.div>
           </motion.div>
         )}

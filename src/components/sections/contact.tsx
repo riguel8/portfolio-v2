@@ -1,10 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import ScrollReveal from "@/components/scroll-reveal";
 import { Icon } from "@iconify/react";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const socialLinks = [
   { label: "Facebook", href: "https://www.facebook.com/al.right.186" },
@@ -89,17 +88,24 @@ export default function Contact() {
               </ScrollReveal>
               <ScrollReveal delay={0.3}>
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <a
+                  <motion.a
                     href="tel:09922108064"
-                    className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 sm:p-6 transition-colors duration-300 hover:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    whileHover={{ y: -4, boxShadow: "0 12px 24px -8px rgba(0,0,0,0.2)" }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
                   >
-                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-accent/10">
+                    <motion.div 
+                      className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-accent/10"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       <Icon
                         icon="solar:phone-line-duotone"
                         className="h-5 w-5 sm:h-6 sm:w-6 text-accent"
                         aria-hidden="true"
                       />
-                    </div>
+                    </motion.div>
                     <div className="min-w-0">
                       <span className="font-mono text-xs font-semibold text-muted uppercase tracking-wider">
                         Call
@@ -108,20 +114,27 @@ export default function Contact() {
                         09922108064
                       </div>
                     </div>
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
                     href="https://mail.google.com/mail/?view=cm&fs=1&to=rmdiaz1234@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 sm:p-6 transition-colors duration-300 hover:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    whileHover={{ y: -4, boxShadow: "0 12px 24px -8px rgba(0,0,0,0.2)" }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
                   >
-                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-accent/10">
+                    <motion.div 
+                      className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-accent/10"
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       <Icon
                         icon="solar:letter-line-duotone"
                         className="h-5 w-5 sm:h-6 sm:w-6 text-accent"
                         aria-hidden="true"
                       />
-                    </div>
+                    </motion.div>
                     <div className="min-w-0">
                       <span className="font-mono text-xs font-semibold text-muted uppercase tracking-wider">
                         Email
@@ -130,7 +143,7 @@ export default function Contact() {
                         rmdiaz1234@gmail.com
                       </div>
                     </div>
-                  </a>
+                  </motion.a>
                 </div>
               </ScrollReveal>
             </motion.div>
@@ -154,17 +167,26 @@ export default function Contact() {
                     distance={20}
                   >
                     <li>
-                      <a
+                      <motion.a
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group flex items-center justify-between border-b border-border py-3 sm:py-4 transition-colors duration-300 hover:border-accent/50 focus-visible:outline-none focus-visible:border-accent"
+                        whileHover={{ x: 8 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ duration: 0.2 }}
                       >
                         <span className="text-base sm:text-lg font-medium text-foreground transition-colors group-hover:text-accent">
                           {link.label}
                         </span>
-                        <Icon icon="solar:arrow-right-up-line-duotone" className="h-4 w-4" />
-                      </a>
+                        <motion.span
+                          initial={{ x: 0, y: 0 }}
+                          whileHover={{ x: 4, y: -4 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Icon icon="solar:arrow-right-up-line-duotone" className="h-4 w-4" />
+                        </motion.span>
+                      </motion.a>
                     </li>
                   </ScrollReveal>
                 ))}

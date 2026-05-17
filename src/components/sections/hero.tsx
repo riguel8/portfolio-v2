@@ -2,8 +2,7 @@
 
 import { useRef } from "react";
 import { Icon } from "@iconify/react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -15,10 +14,10 @@ export default function Hero() {
   });
 
   // Scroll-driven transforms — GPU-accelerated (only transform + opacity)
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
   return (
     <section
@@ -96,15 +95,18 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
-            <a
+            <motion.a
               href="/assets/files/myResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border-2 bg-accent px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-bold text-background transition-all duration-300 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="inline-flex items-center gap-2 rounded-full border-2 bg-accent px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-bold text-background transition-colors duration-300 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
             >
               <Icon icon="solar:eye-line-duotone" className="h-4 w-4" />
               View Resume
-            </a>
+            </motion.a>
             {/* <a
               href="/assets/files/myResume.pdf"
               download
