@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Ruel Miguel Diaz",
   },
   description:
-    "Portfolio of Ruel Miguel Diaz — a web & software developer and UI/UX designer with hands-on experience in front-end, back-end, database management, and UI/UX design.",
+    "Portfolio of Ruel Miguel Diaz — a web & software developer and UI/UX designer with hands-on experience in front-end, back-end, database management, and UI/UX design. Based in the Philippines, specializing in React, Next.js, TypeScript, and modern web technologies.",
   keywords: [
     "Ruel Miguel Diaz",
     "Web Developer",
@@ -35,6 +35,12 @@ export const metadata: Metadata = {
     "TypeScript",
     "Frontend Developer",
     "Full Stack Developer",
+    "Philippines Developer",
+    "Freelance Developer",
+    "Web Design",
+    "Tailwind CSS",
+    "Laravel",
+    "Vue.js",
   ],
   authors: [{ name: "Ruel Miguel Diaz", url: siteUrl }],
   creator: "Ruel Miguel Diaz",
@@ -85,10 +91,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Skip to main content link for accessibility */}
+        <a href="#work" className="skip-link">
+          Skip to main content
+        </a>
         <LenisProvider>
           <GsapProvider>{children}</GsapProvider>
         </LenisProvider>

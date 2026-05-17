@@ -23,10 +23,10 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="section-dots relative flex h-[200vh] items-start justify-center"
+      className="section-dots relative flex h-[180vh] sm:h-[200vh] items-start justify-center"
       aria-label="Hero"
     >
-      <div className="sticky top-14 flex h-screen w-full items-center justify-center overflow-hidden">
+      <div className="sticky top-0 sm:top-14 flex h-screen w-full items-center justify-center overflow-hidden pt-16 sm:pt-0">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-background" />
 
@@ -52,11 +52,11 @@ export default function Hero() {
               ? {}
               : { scale, opacity, y }
           }
-          className="gpu-accelerated relative z-10 mx-auto max-w-7xl px-6 text-center md:px-12"
+          className="gpu-accelerated relative z-10 mx-auto max-w-7xl px-4 sm:px-6 text-center md:px-12"
         >
           {/* Eyebrow */}
           <motion.p
-            className="font-mono mb-8 text-sm tracking-widest text-muted uppercase"
+            className="font-mono mb-4 sm:mb-8 text-xs sm:text-sm tracking-widest text-muted uppercase"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -67,7 +67,7 @@ export default function Hero() {
           {/* Main heading */}
           <motion.h1
             style={prefersReducedMotion ? {} : { y: titleY }}
-            className="gpu-accelerated text-4xl font-bold leading-[1.05] tracking-tighter text-foreground sm:text-4xl md:text-6xl lg:text-8xl"
+            className="gpu-accelerated text-3xl font-bold leading-[1.05] tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-8xl"
           >
             <motion.span
               className="block"
@@ -81,7 +81,7 @@ export default function Hero() {
 
           {/* Subtitle */}
           <motion.p
-            className="mx-auto mt-8 max-w-lg text-base leading-relaxed text-muted md:text-lg"
+            className="mx-auto mt-6 sm:mt-8 max-w-lg text-sm sm:text-base leading-relaxed text-muted md:text-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
@@ -91,7 +91,7 @@ export default function Hero() {
 
           {/* Resume buttons */}
           <motion.div
-            className="mt-10 flex flex-wrap items-center justify-center gap-4"
+            className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
@@ -100,7 +100,7 @@ export default function Hero() {
               href="/assets/files/myResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border-2 bg-accent px-7 py-3.5 text-sm font-bold text-background hover:bg-background hover:text-foreground"
+              className="inline-flex items-center gap-2 rounded-full border-2 bg-accent px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-bold text-background transition-all duration-300 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <Icon icon="solar:eye-line-duotone" className="h-4 w-4" />
               View Resume
@@ -130,7 +130,7 @@ export default function Hero() {
 
           {/* Scroll indicator */}
           <motion.div
-            className="mt-12 flex flex-col items-center gap-2"
+            className="mt-8 sm:mt-12 flex flex-col items-center gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.5 }}

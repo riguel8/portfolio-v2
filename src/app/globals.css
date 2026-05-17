@@ -58,6 +58,30 @@ html.lenis body {
   color: var(--background);
 }
 
+/* ── Focus Styles ── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Skip to main content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px 16px;
+  background: var(--accent);
+  color: var(--background);
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 10000;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -199,5 +223,66 @@ html.lenis body {
   .custom-cursor,
   .custom-cursor-dot {
     display: none !important;
+  }
+}
+
+/* ── Smooth scrollbar ── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* ── Image loading skeleton ── */
+.image-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--card) 0%,
+    var(--border) 50%,
+    var(--card) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Touch-friendly tap targets ── */
+@media (pointer: coarse) {
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ── Print styles ── */
+@media print {
+  .custom-cursor,
+  .custom-cursor-dot,
+  nav,
+  .parallax-wrapper {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
   }
 }

@@ -41,21 +41,29 @@ export default function HorizontalGallery() {
     setLightboxOpen(true);
   };
 
+  // GSAP horizontal scroll - only for desktop (md+)
   useEffect(() => {
+    // Only run on client
+    if (typeof window === "undefined") return;
     if (prefersReducedMotion) return;
+    
+    // Check if we're on desktop
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    if (!mediaQuery.matches) return;
 
     const section = sectionRef.current;
     const track = trackRef.current;
     if (!section || !track) return;
 
-    // Kill existing triggers for this section before creating new ones
-    ScrollTrigger.getAll()
-      .filter((t) => t.vars.trigger === section)
-      .forEach((t) => t.kill());
+    // Small delay to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      // Kill existing triggers
+      ScrollTrigger.getAll()
+        .filter((t) => t.vars.trigger === section)
+        .forEach((t) => t.kill());
 
-    const scrollWidth = track.scrollWidth - window.innerWidth;
+      const scrollWidth = track.scrollWidth - window.innerWidth;
 
-    const ctx = gsap.context(() => {
       gsap.to(track, {
         x: -scrollWidth,
         ease: "none",
@@ -67,26 +75,38 @@ export default function HorizontalGallery() {
           invalidateOnRefresh: true,
         },
       });
-    }, section);
+    }, 100);
 
-    return () => ctx.revert();
+    return () => {
+      clearTimeout(timeoutId);
+      ScrollTrigger.getAll()
+        .filter((t) => t.vars.trigger === section)
+        .forEach((t) => t.kill());
+    };
   }, [prefersReducedMotion, filteredProjects]);
 
-  // Fallback for reduced motion: vertical stack
-  if (prefersReducedMotion) {
-    return (
-      <section id="work" className="py-32" aria-label="Selected Work">
-        <div className="mx-auto max-w-7xl px-6 md:px-12">
-          <h2 className="mb-8 text-4xl font-bold tracking-tight">
+  return (
+    <>
+      {/* Mobile Layout - vertical grid */}
+      <section id="work" className="py-20 md:hidden" aria-label="Selected Work">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <p className="mb-4 font-mono text-xs tracking-widest text-muted uppercase">
             Selected Work
+          </p>
+          <h2 className="mb-4 text-3xl sm:text-4xl font-bold tracking-tighter">
+            Projects <span className="text-accent">&amp; Work</span>
           </h2>
+          <p className="mb-8 max-w-lg text-sm sm:text-base leading-relaxed text-muted">
+            A curated collection of projects spanning web development,
+            software engineering, and UI/UX design.
+          </p>
           {/* Platform filter */}
-          <div className="mb-12 flex flex-wrap gap-2">
+          <div className="mb-8 flex flex-wrap gap-2">
             {platforms.map((p) => (
               <button
                 key={p}
                 onClick={() => setActivePlatform(p)}
-                className={`rounded-full border px-4 py-2 text-xs font-medium transition-all duration-300 ${
+                className={`rounded-full border px-3 py-2 text-xs font-medium transition-all duration-300 ${
                   activePlatform === p
                     ? "border-accent bg-accent text-background"
                     : "border-border text-muted hover:border-accent/40 hover:text-foreground"
@@ -96,25 +116,46 @@ export default function HorizontalGallery() {
               </button>
             ))}
           </div>
-          <div className="grid gap-12 md:grid-cols-2">
-            {filteredProjects.map((project) => (
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
+            {filteredProjects.map((project, index) => (
               <article
                 key={project.id}
-                className="group cursor-pointer"
+                className="group cursor-pointer rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
                 onClick={() => openPreview(project.images, project.title, project.link)}
+                role="button"
+                aria-label={`View ${project.title} project`}
               >
-                <div className="relative aspect-4/3 overflow-hidden rounded-xl bg-card">
+                <div className="relative aspect-video overflow-hidden bg-card">
                   <Image
                     src={project.thumbnail}
                     alt={project.title}
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    priority={index < 2}
                   />
                 </div>
-                <div className="mt-4">
-                  <h3 className="text-xl font-semibold">{project.title}</h3>
-                  <p className="mt-1 text-sm text-muted">{project.category}</p>
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-1.5 mb-2">
+                    {project.category.map((cat, idx) => (
+                      <span key={idx} className="rounded-full border border-border px-2 py-0.5 text-[10px] text-muted">
+                        {cat}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="text-base font-semibold text-foreground mb-1">{project.title}</h3>
+                  <p className="text-xs text-muted line-clamp-2">{project.description}</p>
+                  <div className="flex items-center gap-1.5 mt-3">
+                    {project.tech.slice(0, 4).map((tech) => (
+                      <div
+                        key={tech.icon}
+                        className="flex h-6 w-6 items-center justify-center rounded-md border border-border bg-background"
+                        title={tech.icon.split(':')[1] || tech.icon}
+                      >
+                        <Icon icon={tech.icon} className="text-sm" aria-hidden="true" />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </article>
             ))}
@@ -128,18 +169,14 @@ export default function HorizontalGallery() {
           Link={lightboxLink}
         />
       </section>
-    );
-  }
 
-  return (
-    <>
+      {/* Desktop Layout - GSAP horizontal scroll */}
       <section
         ref={sectionRef}
-        id="work"
-        className="section-noise relative"
+        id="work-desktop"
+        className="section-noise relative hidden md:block"
         aria-label="Selected Work"
       >
-        {/* Horizontal track */}
         <div
           ref={trackRef}
           className="flex h-screen items-center gap-8 pl-[10vw] pr-[10vw]"
@@ -150,7 +187,7 @@ export default function HorizontalGallery() {
             <p className="mb-4 font-mono text-xs tracking-widest text-muted uppercase">
               Selected Work
             </p>
-            <h2 className="text-5xl font-bold leading-tight tracking-tighter md:text-7xl">
+            <h2 className="text-5xl font-bold leading-tight tracking-tighter lg:text-7xl">
               Projects
               <br />
               <span className="text-accent">&amp; Work</span>
@@ -160,7 +197,7 @@ export default function HorizontalGallery() {
               software engineering, and UI/UX design. Click any card to preview.
             </p>
 
-            {/* Platform filter — inside intro card */}
+            {/* Platform filter */}
             <div className="mt-8 flex flex-wrap gap-2">
               {platforms.map((p) => (
                 <button
@@ -176,42 +213,22 @@ export default function HorizontalGallery() {
                 </button>
               ))}
             </div>
-
-            {/* <div className="mt-6 flex items-center gap-3 text-xs text-muted">
-              <span className="inline-flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-[#61dafb]" />
-                Web
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-[#00d4ff]" />
-                Desktop
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-[#a259ff]" />
-                Design
-              </span>
-            </div> */}
-            <br />
-            <p className="text-xs text-muted">Note: Some projects are private or offline; only image previews are available.</p>
+            <p className="mt-6 text-xs text-muted">Note: Some projects are private or offline; only image previews are available.</p>
           </div>
 
           {/* Project cards */}
           {filteredProjects.map((project, index) => (
             <article
               key={project.id}
-              data-project-card
               className="group flex h-[60vh] w-[38vw] shrink-0 cursor-pointer flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
-              role="article"
-              aria-label={`${project.title} — ${project.category}`}
               onClick={() => openPreview(project.images, project.title, project.link)}
+              role="button"
+              aria-label={`View ${project.title} project`}
             >
               {/* Top — Info */}
               <div className="flex flex-col gap-3 p-6 pb-4">
                 <div className="flex items-start justify-between">
-                  <span
-                    className="font-mono text-sm text-muted"
-                    aria-hidden="true"
-                  >
+                  <span className="font-mono text-sm text-muted" aria-hidden="true">
                     {(index + 1).toString().padStart(2, '0')}
                   </span>
                   <div className="flex gap-2">
@@ -235,11 +252,7 @@ export default function HorizontalGallery() {
                       className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-card"
                       title={tech.icon.split(':')[1] || tech.icon}
                     >
-                      <Icon
-                        icon={tech.icon}
-                        className="text-lg"
-                        aria-hidden="true"
-                      />
+                      <Icon icon={tech.icon} className="text-lg" aria-hidden="true" />
                     </div>
                   ))}
                 </div>
@@ -247,7 +260,7 @@ export default function HorizontalGallery() {
 
               {/* Bottom — Thumbnail */}
               <div className="relative flex-1 overflow-hidden">
-                <div data-project-image className="gpu-accelerated h-full w-full">
+                <div className="gpu-accelerated h-full w-full">
                   <Image
                     src={project.thumbnail}
                     alt={project.title}
@@ -280,4 +293,3 @@ export default function HorizontalGallery() {
     </>
   );
 }
-

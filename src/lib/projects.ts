@@ -1,6 +1,3 @@
-import { link } from "fs";
-import { platform } from "os";
-
 export interface Project {
   id: string;
   title: string;

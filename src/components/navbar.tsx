@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
@@ -14,7 +14,31 @@ const navLinks = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const ticking = useRef(false);
+
+  const closeMobileMenu = useCallback(() => {
+    setMobileMenuOpen(false);
+  }, []);
+
+  // Close mobile menu on route change or escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMobileMenu();
+    };
+    
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleEscape);
+    } else {
+      document.body.style.overflow = "";
+    }
+    
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [mobileMenuOpen, closeMobileMenu]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -115,73 +139,130 @@ export default function Navbar() {
           </div>
         </a>
 
-        {/* ── Links ── */}
+        {/* ── Desktop Links ── */}
         <ul className="hidden md:flex items-center list-none gap-5">
           {navLinks.map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-white/70 transition-colors duration-300 hover:text-white"
+                className="text-sm font-medium text-white/70 transition-colors duration-300 hover:text-white focus-visible:text-white focus-visible:outline-none"
               >
                 {link.label}
               </a>
             </li>
           ))}
           <li>
-        {/* ── CTA ── */}
-        <a
-          href="/assets/files/myResume.pdf"
-          download
-          className="inline-flex items-center gap-2 rounded-full border-2 bg-white px-5 py-2 text-xs font-medium text-black hover:bg-black hover:text-white hover:border-white hover:border-2"
-          style={{
-            transition: [
-              "padding 0.5s cubic-bezier(0.4,0,0.2,1)",
-              "font-size 0.5s cubic-bezier(0.4,0,0.2,1)",
-              "opacity 0.2s ease",
-            ].join(", "),
-          }}
-          onMouseEnter={e => {
-            (e.currentTarget as HTMLElement).style.opacity = "0.88";
-            (e.currentTarget as HTMLElement).style.transform = "scale(1.02)";
-          }}
-          onMouseLeave={e => {
-            (e.currentTarget as HTMLElement).style.opacity = "1";
-            (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-          }}
-        >
-          Download Resume&nbsp;
-          <span
-            className="inline-block transition-transform duration-200 group-hover:translate-x-0.5"
-          >
-            <Icon icon="solar:arrow-right-line-duotone" className="h-4 w-4" />
-          </span>
-        </a>
+            {/* ── CTA ── */}
+            <a
+              href="/assets/files/myResume.pdf"
+              download
+              className="inline-flex items-center gap-2 rounded-full border-2 bg-white px-5 py-2 text-xs font-medium text-black transition-all duration-300 hover:bg-black hover:text-white hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Download Resume
+              <Icon icon="solar:arrow-right-line-duotone" className="h-4 w-4" aria-hidden="true" />
+            </a>
           </li>
         </ul>
-        <AnimatePresence>
-          {scrolled && (
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2 md:hidden"
-            >
-              <div className="flex items-center gap-4 rounded-full border border-white/10 bg-black/80 px-6 py-3 backdrop-blur-xl">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="text-xs font-medium text-white/70 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+
+        {/* ── Mobile Menu Button ── */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="flex md:hidden h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileMenuOpen}
+        >
+          <Icon 
+            icon={mobileMenuOpen ? "solar:close-circle-line-duotone" : "solar:hamburger-menu-line-duotone"} 
+            className="h-5 w-5" 
+          />
+        </button>
       </nav>
+
+      {/* Portal-style mobile menu - rendered outside nav for proper stacking */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-9999 flex flex-col md:hidden pointer-events-auto"
+            style={{ background: "#0a0a0a" }}
+          >
+            {/* Header with logo and close button */}
+            <div className="flex items-center justify-between p-6">
+              <a href="#" className="flex items-center gap-2" onClick={closeMobileMenu}>
+                <Image
+                  src="/assets/images/LogoKO.png"
+                  alt="Ruel Miguel Diaz"
+                  width={32}
+                  height={32}
+                  priority
+                  className="object-cover"
+                />
+              </a>
+              <button
+                onClick={closeMobileMenu}
+                className="flex h-10 w-10 items-center justify-center text-white/80 transition-colors hover:text-white focus-visible:outline-none"
+                aria-label="Close menu"
+              >
+                <svg
+                  className="h-7 w-7"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Navigation Links */}
+            <nav className="flex-1 flex flex-col justify-center px-8">
+              <ul className="space-y-1">
+                {navLinks.map((link, index) => (
+                  <motion.li
+                    key={link.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05 + index * 0.07, duration: 0.3 }}
+                  >
+                    <a
+                      href={link.href}
+                      onClick={closeMobileMenu}
+                      className="block text-[2.25rem] font-bold text-white py-2 transition-colors hover:text-accent focus-visible:outline-none focus-visible:text-accent"
+                    >
+                      {link.label}
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Bottom CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="px-8 pb-10 space-y-4"
+            >
+              <a
+                href="/assets/files/myResume.pdf"
+                download
+                onClick={closeMobileMenu}
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-sm font-semibold text-black transition-all duration-200 hover:bg-white/90"
+              >
+                Download Resume
+                <Icon icon="solar:arrow-right-line-duotone" className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <p className="text-center text-sm text-accent">
+                Philippines
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

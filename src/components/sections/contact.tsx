@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollReveal from "@/components/scroll-reveal";
 import { Icon } from "@iconify/react";
-import ParallaxWrapper from "@/components/parallax-wrapper";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const socialLinks = [
@@ -62,7 +61,7 @@ export default function Contact() {
           </>
         )}
 
-        <div className="relative mx-auto max-w-7xl px-6 py-32 md:px-12">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 py-20 sm:py-32 md:px-12">
           <div className="grid gap-16 md:grid-cols-2 md:gap-24">
             {/* Left — parallax vertical */}
             <motion.div
@@ -75,7 +74,7 @@ export default function Contact() {
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={0.1}>
-                <h2 className="mt-4 text-4xl font-bold tracking-tighter md:text-7xl">
+                <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tighter md:text-6xl lg:text-7xl">
                   Let&apos;s build
                   <br />
                   something{" "}
@@ -89,23 +88,23 @@ export default function Contact() {
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={0.3}>
-                <div className="mt-8 flex gap-4">
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <a
                     href="tel:09922108064"
-                    className="flex-1 flex items-center justify-between rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5"
+                    className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                   >
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <Icon
-                          icon="streamline-stickies-color:mobile-phone-duo"
-                          className="h-5 w-5 text-muted"
-                          aria-hidden="true"
-                        />
-                        <span className="font-mono text-sm font-semibold text-muted uppercase tracking-wider">
-                          Call
-                        </span>
-                      </div>
-                      <div className="mt-1 text-xl font-bold text-foreground">
+                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-accent/10">
+                      <Icon
+                        icon="solar:phone-line-duotone"
+                        className="h-5 w-5 sm:h-6 sm:w-6 text-accent"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="font-mono text-xs font-semibold text-muted uppercase tracking-wider">
+                        Call
+                      </span>
+                      <div className="text-base sm:text-lg font-bold text-foreground truncate">
                         09922108064
                       </div>
                     </div>
@@ -114,20 +113,20 @@ export default function Contact() {
                     href="https://mail.google.com/mail/?view=cm&fs=1&to=rmdiaz1234@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-between rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5"
+                    className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                   >
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <Icon
-                          icon="streamline-stickies-color:mail-duo"
-                          className="h-5 w-5 text-muted"
-                          aria-hidden="true"
-                        />
-                        <span className="font-mono text-sm font-semibold text-muted uppercase tracking-wider">
-                          Email
-                        </span>
-                      </div>
-                      <div className="mt-1 text-xl font-bold text-foreground">
+                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-accent/10">
+                      <Icon
+                        icon="solar:letter-line-duotone"
+                        className="h-5 w-5 sm:h-6 sm:w-6 text-accent"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="font-mono text-xs font-semibold text-muted uppercase tracking-wider">
+                        Email
+                      </span>
+                      <div className="text-base sm:text-lg font-bold text-foreground truncate">
                         rmdiaz1234@gmail.com
                       </div>
                     </div>
@@ -159,9 +158,9 @@ export default function Contact() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-between border-b border-border py-4 transition-colors duration-300 hover:border-accent/50"
+                        className="group flex items-center justify-between border-b border-border py-3 sm:py-4 transition-colors duration-300 hover:border-accent/50 focus-visible:outline-none focus-visible:border-accent"
                       >
-                        <span className="text-lg font-medium text-foreground transition-colors group-hover:text-accent">
+                        <span className="text-base sm:text-lg font-medium text-foreground transition-colors group-hover:text-accent">
                           {link.label}
                         </span>
                         <Icon icon="solar:arrow-right-up-line-duotone" className="h-4 w-4" />

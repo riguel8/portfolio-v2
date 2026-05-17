@@ -14,17 +14,15 @@ const allCerts = certificates;
 
 function CertCard({
   cert,
-  index,
   onClick,
 }: {
   cert: (typeof certificates)[number];
-  index: number;
   onClick: () => void;
 }) {
   return (
     <button
       onClick={onClick}
-      className="group relative shrink-0 w-70 overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
+      className="group relative shrink-0 w-60 sm:w-70 overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       aria-label={`View certificate: ${cert.title}`}
     >
       <div className="relative aspect-4/3 w-full overflow-hidden">
@@ -92,7 +90,7 @@ export default function Certificates() {
 
   return (
     <>
-      <section ref={sectionRef} id="certificates" className="section-grid relative overflow-hidden py-32" aria-label="Certificates">
+      <section ref={sectionRef} id="certificates" className="section-grid relative overflow-hidden py-20 sm:py-32" aria-label="Certificates">
         {/* Decorative parallax elements */}
         {!prefersReducedMotion && (
           <>
@@ -109,7 +107,7 @@ export default function Certificates() {
           </>
         )}
 
-        <div className="relative mx-auto max-w-7xl px-6 md:px-12">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
           <ParallaxWrapper speed={0.1}>
             <ScrollReveal>
               <p className="font-mono text-xs tracking-widest text-muted uppercase">
@@ -117,7 +115,7 @@ export default function Certificates() {
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <h2 className="mt-4 text-4xl font-bold tracking-tighter md:text-6xl">
+              <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tighter md:text-5xl lg:text-6xl">
                 Certificates &amp;
                 <br />
                 <span className="text-accent">Credentials</span>
@@ -141,7 +139,6 @@ export default function Certificates() {
                 <CertCard
                   key={`cert-${i}`}
                   cert={cert}
-                  index={i % allCerts.length}
                   onClick={() => openCert(certificates.indexOf(cert))}
                 />
               ))}

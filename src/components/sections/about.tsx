@@ -33,8 +33,7 @@ const experience = [
 const volunteerExperience = [
   { role: "Developer & Designer", company: "Techstars Startup Weekend Bukidnon 6", period: "" },
   // { role: "Front End Developer", company: "Bukidnon Business Summit (BUKFEST 2025)", period: "" },
-  { role: "Stage Manager Committee Member", company: "NASA Space Apps Challenge 2024", period: "" },
-  { role: "Stage Manager Committee Member", company: "Bukidnon Inter-College Technology Competition (BICTC)", period: "" },
+  { role: "Stage Manager Committee Member", company: "NASA Space Apps Challenge 2024 & Bukidnon Inter-College Technology Competition (BICTC)", period: "" },
 ];
 
 export default function About() {
@@ -52,7 +51,7 @@ export default function About() {
   const decorX1 = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   return (
-    <section ref={sectionRef} id="about" className="section-noise relative overflow-hidden py-32" aria-label="About">
+    <section ref={sectionRef} id="about" className="section-noise relative overflow-hidden py-20 sm:py-32" aria-label="About">
       {/* Decorative parallax background elements */}
       {!prefersReducedMotion && (
         <>
@@ -74,7 +73,7 @@ export default function About() {
         </>
       )}
 
-      <div className="relative mx-auto max-w-7xl px-6 md:px-12">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
         {/* ── Bio + Skills ── */}
         <div className="grid gap-16 md:grid-cols-2 md:gap-24">
           {/* Left column — parallax vertical slow */}
@@ -85,7 +84,7 @@ export default function About() {
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <h2 className="mt-4 text-4xl font-bold tracking-tighter md:text-6xl">
+              <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tighter md:text-5xl lg:text-6xl">
                 Building at the
                 <br />
                 intersection of{" "}
@@ -128,7 +127,7 @@ export default function About() {
                     distance={20}
                   >
                     <div
-                      className="group relative flex h-14 w-14 items-center justify-center rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-accent/5"
+                      className="group relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-accent/5"
                       title={skill.name}
                     >
                       <Icon
@@ -158,7 +157,7 @@ export default function About() {
                     distance={20}
                   >
                     <div
-                      className="group relative flex h-14 w-14 items-center justify-center rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-accent/5"
+                      className="group relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-accent/5"
                       title={tool.name}
                     >
                       <Icon
@@ -178,7 +177,7 @@ export default function About() {
         </div>
 
         {/* ── Education + Experience ── */}
-        <div className="mt-32 grid gap-16 md:grid-cols-2 md:gap-24">
+        <div className="mt-16 sm:mt-32 grid gap-12 sm:gap-16 md:grid-cols-2 md:gap-24">
           {/* Education — parallax horizontal from left */}
           <ParallaxWrapper speed={0.12} axis="horizontal">
             <ScrollReveal>
@@ -202,7 +201,7 @@ export default function About() {
                           {edu.major}
                         </p>
                       </div>
-                      <span className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted">
+                      <span className="shrink-0 rounded-full border border-border px-2 sm:px-3 py-1 text-[10px] sm:text-xs text-muted">
                         {edu.period}
                       </span>
                     </div>
@@ -249,7 +248,7 @@ export default function About() {
                               {exp.company}
                             </p>
                           </div>
-                          <span className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted">
+                          <span className="shrink-0 rounded-full border border-border px-2 sm:px-3 py-1 text-[10px] sm:text-xs text-muted whitespace-nowrap">
                             {exp.period}
                           </span>
                         </div>

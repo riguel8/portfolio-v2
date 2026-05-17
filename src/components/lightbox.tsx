@@ -23,9 +23,13 @@ export default function Lightbox({
 }: LightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
+  // Reset index when lightbox opens - using layout effect to run before paint
   useEffect(() => {
-    setCurrentIndex(initialIndex);
-  }, [initialIndex, isOpen]);
+    if (isOpen) {
+      setCurrentIndex(initialIndex);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   const goNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -57,7 +61,7 @@ export default function Lightbox({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-100 flex items-center justify-center"
+          className="fixed inset-0 z-[100] flex items-center justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -73,34 +77,36 @@ export default function Lightbox({
           />
 
           {/* Content */}
-          <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 py-16">
+          <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-3 sm:px-4 py-12 sm:py-16">
             {/* Header */}
-            <div className="mb-4 flex w-full max-w-5xl items-center justify-between">
-              <div>
+            <div className="mb-3 sm:mb-4 flex w-full max-w-5xl items-center justify-between gap-4">
+              <div className="min-w-0 flex-1">
                 {title && (
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-base sm:text-lg font-semibold text-white truncate">
                     {Array.isArray(title) ? title[currentIndex] : title}
                   </h3>
                 )}
-                {Link && (
-                  <a
-                    href={Link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/80 hover:text-white transition-colors"
-                  >
-                    View Project →
-                  </a>
-                )}
-                {images.length > 1 && (
-                  <p className="text-sm text-white/50">
-                    {currentIndex + 1} / {images.length}
-                  </p>
-                )}
+                <div className="flex items-center gap-3 mt-1">
+                  {Link && (
+                    <a
+                      href={Link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs sm:text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:underline"
+                    >
+                      View Project →
+                    </a>
+                  )}
+                  {images.length > 1 && (
+                    <p className="text-xs sm:text-sm text-white/50">
+                      {currentIndex + 1} / {images.length}
+                    </p>
+                  )}
+                </div>
               </div>
               <button
                 onClick={onClose}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 aria-label="Close preview"
               >
                 <svg
@@ -109,6 +115,7 @@ export default function Lightbox({
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth={2}
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -146,7 +153,7 @@ export default function Lightbox({
                 <>
                   <button
                     onClick={goPrev}
-                    className="absolute left-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 md:-left-16"
+                    className="absolute left-2 sm:left-0 top-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 md:-left-16 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                     aria-label="Previous image"
                   >
                     <svg
@@ -165,7 +172,7 @@ export default function Lightbox({
                   </button>
                   <button
                     onClick={goNext}
-                    className="absolute right-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 md:-right-16"
+                    className="absolute right-2 sm:right-0 top-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 md:-right-16 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                     aria-label="Next image"
                   >
                     <svg
@@ -188,17 +195,18 @@ export default function Lightbox({
 
             {/* Thumbnail strip */}
             {images.length > 1 && (
-              <div className="mt-4 flex gap-2 overflow-x-auto pb-2">
+              <div className="mt-3 sm:mt-4 flex gap-1.5 sm:gap-2 overflow-x-auto pb-2 max-w-full px-2">
                 {images.map((img, i) => (
                   <button
                     key={i}
                     onClick={() => setCurrentIndex(i)}
-                    className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
+                    className={`relative h-12 w-16 sm:h-16 sm:w-24 shrink-0 overflow-hidden rounded-md sm:rounded-lg border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                       i === currentIndex
                         ? "border-accent opacity-100"
                         : "border-transparent opacity-50 hover:opacity-80"
                     }`}
                     aria-label={`View image ${i + 1}`}
+                    aria-current={i === currentIndex ? "true" : undefined}
                   >
                     <Image
                       src={img}
