@@ -12,11 +12,12 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+      "script-src 'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval'",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob:",
       "font-src 'self' https://fonts.gstatic.com",
-      "connect-src 'self' https://api.iconify.design https://fonts.googleapis.com https://fonts.gstatic.com",
+      "connect-src 'self' blob: https://api.iconify.design https://fonts.googleapis.com https://fonts.gstatic.com",
+      "worker-src 'self' blob:",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -27,6 +28,7 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactCompiler: true,
   poweredByHeader: false,
+  turbopack: {},
   compress: true,
   images: {
     formats: ["image/avif", "image/webp"],

@@ -32,7 +32,7 @@ export default function Contact() {
   return (
     <section
       ref={containerRef}
-      id="contact"
+      data-section="contact"
       className="relative pb-0"
       aria-label="Contact"
     >

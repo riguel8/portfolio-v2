@@ -91,12 +91,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         {/* Skip to main content link for accessibility */}
-        <a href="#work" className="skip-link">
+        <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
         <LenisProvider>

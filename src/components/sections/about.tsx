@@ -50,7 +50,7 @@ export default function About() {
   const decorX1 = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   return (
-    <section ref={sectionRef} id="about" className="section-noise relative overflow-hidden py-20 sm:py-32" aria-label="About">
+    <section ref={sectionRef} data-section="about" className="section-noise relative overflow-hidden py-20 sm:py-32" aria-label="About">
       {/* Decorative parallax background elements */}
       {!prefersReducedMotion && (
         <>

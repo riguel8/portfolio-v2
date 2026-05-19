@@ -90,7 +90,7 @@ export default function Certificates() {
 
   return (
     <>
-      <section ref={sectionRef} id="certificates" className="section-grid relative overflow-hidden py-20 sm:py-32" aria-label="Certificates">
+      <section ref={sectionRef} data-section="certificates" className="section-grid relative overflow-hidden py-20 sm:py-32" aria-label="Certificates">
         {/* Decorative parallax elements */}
         {!prefersReducedMotion && (
           <>

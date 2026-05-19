@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   title: string;
   category: string[];
-  platform: "web" | "desktop" | "design";
+  platform: "web" | "desktop" | "design" | "graphic";
   description: string;
   link: string;
   tech: Array<{ icon: string }>;
@@ -10,16 +10,61 @@ export interface Project {
   images: string[];
 }
 
-export type Platform = "all" | "web" | "desktop" | "design";
+export type Platform = "all" | "web" | "desktop" | "design" | "graphic";
 
 export const platformLabels: Record<Platform, string> = {
   all: "All Projects",
   web: "Web Applications",
   desktop: "Desktop Applications",
   design: "UI/UX Design",
+  graphic: "Graphic Design",
 };
 
 export const projects: Project[] = [
+  {
+    id: "000",
+    title: "JB's Creation",
+    category: ["Event Decoration Website","Project"],
+    platform: "web",
+    link: "https://decor-universe.vercel.app",
+    description: "A creative event gallery website for showcasing events and experiences. Built with Frontend technologies including React, TypeScript, Tailwind CSS, and Vite.",
+    tech: [{ icon: "devicon:react" }, { icon: "devicon:typescript" }, { icon: "devicon:tailwindcss" }, { icon: "devicon:vitejs" }],
+    thumbnail: "/assets/images/projects/decor/hero.png",
+    images: [
+      "/assets/images/projects/decor/hero.png",
+      "/assets/images/projects/decor/gallery.png",
+      "/assets/images/projects/decor/services.png",
+      "/assets/images/projects/decor/package.png",
+      "/assets/images/projects/decor/contact.png",
+    ],
+  },
+  {
+    id: "001",
+    title: "LGU Client Satisfaction Measurement(CSM)",
+    category: ["Work", "Full-Stack Web Application"],
+    platform: "web",
+    link: "",
+    description: "A web-based feedback collection and analytics platform designed for Philippine Local Government Units (LGUs) to monitor service quality and comply with ARTA mandates.",
+    tech: 
+        [
+          { "icon": "devicon:php" },
+          { "icon": "devicon:laravel" },  
+          { "icon": "devicon:react" }, 
+          { "icon": "devicon:typescript" }, 
+          { "icon": "devicon:tailwindcss" }, 
+          { "icon": "devicon:mysql" }, 
+          { "icon": "devicon:inertiajs"},
+        ],
+    thumbnail: "/assets/images/projects/lgu/hero.png",
+    images: [
+      "/assets/images/projects/lgu/hero.png",
+      "/assets/images/projects/lgu/survey.png",
+      "/assets/images/projects/lgu/survey2.png",
+      "/assets/images/projects/lgu/survey3.png",
+      "/assets/images/projects/lgu/survey4.png",
+      "/assets/images/projects/lgu/metrics.png",
+    ],
+  },
   {
     id: "01",
     title: "DERU",
@@ -342,4 +387,28 @@ export const projects: Project[] = [
       "/assets/images/projects/Datedash/Location.png",
     ],
   },
+
+
+  // ── Graphic Design ──
+  {
+    id: "17",
+    title: "LGU Job Posting",
+    category: ["Project", "Work"],
+    platform: "graphic",
+    link: "",
+    description:
+      "Created graphic designs for LGU job posting, including social media graphics.",
+    tech: [
+      { icon: "devicon:figma" },
+    ],
+    thumbnail: "/assets/images/projects/Jobpost/thumbnail.png",
+    images: [
+      "/assets/images/projects/Jobpost/Administrative Aide III (Plumber I).png",
+      "/assets/images/projects/Jobpost/Administrative Aide VI (Clerk II).png",
+      "/assets/images/projects/Jobpost/Agriculturist II.png",
+      "/assets/images/projects/Jobpost/Municipal Government Department Head I.png",
+      "/assets/images/projects/Jobpost/Municipal Government Department Head I (Municipal Disaster Risk Reduction and Management Officer).png",
+    ],
+  },
+
 ];

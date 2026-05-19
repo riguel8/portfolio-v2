@@ -14,7 +14,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const platforms: Platform[] = ["all", "web", "desktop", "design"];
+const platforms: Platform[] = ["all", "web", "desktop", "design", "graphic"];
 
 // Animation variants for smooth content transitions
 const containerVariants = {
@@ -134,7 +134,7 @@ export default function HorizontalGallery() {
   return (
     <>
       {/* Mobile Layout - vertical grid */}
-      <section id="work" className="py-20 md:hidden" aria-label="Selected Work">
+      <section data-section="work" className="py-20 md:hidden" aria-label="Selected Work">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <p className="mb-4 font-mono text-xs tracking-widest text-muted uppercase">
             Selected Work
@@ -245,7 +245,7 @@ export default function HorizontalGallery() {
       {/* Desktop Layout - GSAP horizontal scroll */}
       <section
         ref={sectionRef}
-        id="work-desktop"
+        data-section="work"
         className="section-noise relative hidden md:block"
         aria-label="Selected Work"
       >

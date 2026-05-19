@@ -1,8 +1,11 @@
 "use client";
 
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { Icon } from "@iconify/react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+
+const Lanyard = dynamic(() => import("@/components/lanyard/landyard"), { ssr: false });
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -29,6 +32,13 @@ export default function Hero() {
         {/* Background gradient */}
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-background" />
 
+        {/* Lanyard overlay — left side */}
+        <div className="absolute inset-y-0 left-0 w-1/2 z-20 pointer-events-none hidden md:block">
+          <div className="pointer-events-auto w-full h-full">
+            <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+          </div>
+        </div>
+
         {/* Decorative parallax background elements */}
         {!prefersReducedMotion && (
           <>
@@ -53,105 +63,105 @@ export default function Hero() {
           }
           className="gpu-accelerated relative z-10 mx-auto max-w-7xl px-4 sm:px-6 text-center md:px-12"
         >
-          {/* Eyebrow */}
-          <motion.p
-            className="font-mono mb-4 sm:mb-8 text-xs sm:text-sm tracking-widest text-muted uppercase"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            Web Developer | UI/UX Designer
-          </motion.p>
-
-          {/* Main heading */}
-          <motion.h1
-            style={prefersReducedMotion ? {} : { y: titleY }}
-            className="gpu-accelerated text-3xl font-bold leading-[1.05] tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-8xl"
-          >
-            <motion.span
-              className="block"
-              initial={{ opacity: 0, y: 80 }}
+            {/* Eyebrow */}
+            <motion.p
+              className="font-mono mb-4 sm:mb-8 text-xs sm:text-sm tracking-widest text-muted uppercase"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ duration: 0.8, delay: 0.8 }}
             >
-              Ruel Miguel <span className="text-accent">Diaz</span>
-            </motion.span>
-          </motion.h1>
+              Web Developer | UI/UX Designer
+            </motion.p>
 
-          {/* Subtitle */}
-          <motion.p
-            className="mx-auto mt-6 sm:mt-8 max-w-lg text-sm sm:text-base leading-relaxed text-muted md:text-lg"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            I design, develop, and maintain web applications with hands-on experience in front-end, back-end, database management, machine learning, and UI/UX design.
-          </motion.p>
-
-          {/* Resume buttons */}
-          <motion.div
-            className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
-            <motion.a
-              href="/assets/files/myResume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border-2 bg-accent px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-bold text-background transition-colors duration-300 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.2 }}
+            {/* Main heading */}
+            <motion.h1
+              style={prefersReducedMotion ? {} : { y: titleY }}
+              className="gpu-accelerated text-3xl font-bold leading-[1.05] tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-8xl"
             >
-              <Icon icon="solar:eye-line-duotone" className="h-4 w-4" />
-              View Resume
-            </motion.a>
-            {/* <a
-              href="/assets/files/myResume.pdf"
-              download
-              className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium text-foreground transition-all duration-300 hover:border-accent/40 hover:bg-accent/5"
-            >
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-                aria-hidden="true"
+              <motion.span
+                className="block"
+                initial={{ opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                />
-              </svg>
-              Download Resume
-            </a> */}
-          </motion.div>
+                Ruel Miguel <span className="text-accent">Diaz</span>
+              </motion.span>
+            </motion.h1>
 
-          {/* Scroll indicator */}
-          <motion.div
-            className="mt-8 sm:mt-12 flex flex-col items-center gap-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
-            aria-hidden="true"
-          >
-            <span className="text-xs tracking-widest text-muted uppercase">
-              Scroll
-            </span>
+            {/* Subtitle */}
+            <motion.p
+            className="mx-auto mt-6 sm:mt-8 max-w-lg text-sm sm:text-base leading-relaxed text-muted md:text-lg"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1 }}
+            >
+              I design, develop, and maintain web applications with hands-on experience in front-end, back-end, database management, machine learning, and UI/UX design.
+            </motion.p>
+
+            {/* Resume buttons */}
             <motion.div
-              className="h-12 w-px bg-linear-to-b from-muted to-transparent"
-              animate={{ scaleY: [0, 1, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              style={{ transformOrigin: "top" }}
-            />
-          </motion.div>
+            className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
+              <motion.a
+                href="/assets/files/myResume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border-2 bg-accent px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-bold text-background transition-colors duration-300 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Icon icon="solar:eye-line-duotone" className="h-4 w-4" />
+                View Resume
+              </motion.a>
+              {/* <a
+                href="/assets/files/myResume.pdf"
+                download
+                className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium text-foreground transition-all duration-300 hover:border-accent/40 hover:bg-accent/5"
+              >
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+                Download Resume
+              </a> */}
+            </motion.div>
+
+            {/* Scroll indicator */}
+            <motion.div
+            className="mt-8 sm:mt-12 flex flex-col items-center gap-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.5 }}
+              aria-hidden="true"
+            >
+              <span className="text-xs tracking-widest text-muted uppercase">
+                Scroll
+              </span>
+              <motion.div
+                className="h-12 w-px bg-linear-to-b from-muted to-transparent"
+                animate={{ scaleY: [0, 1, 0] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                style={{ transformOrigin: "top" }}
+              />
+            </motion.div>
         </motion.div>
       </div>
     </section>

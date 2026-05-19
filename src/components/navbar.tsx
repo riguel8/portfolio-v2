@@ -6,11 +6,17 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Icon } from "@iconify/react";
 
 const navLinks = [
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Certificates", href: "#certificates" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", section: "work" },
+  { label: "About", section: "about" },
+  { label: "Certificates", section: "certificates" },
+  { label: "Contact", section: "contact" },
 ];
+
+function scrollToSection(section: string) {
+  const el = document.querySelector(`[data-section="${section}"]`);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 // Animation variants for smooth, professional transitions
 const menuVariants = {
@@ -199,7 +205,7 @@ export default function Navbar() {
     <motion.header
       className="fixed top-0 left-0 right-0 flex justify-center pointer-events-none"
       style={{
-        zIndex: 10000,
+        zIndex: 100,
         padding: scrolled ? "14px 24px" : "14px 24px",
         transition: "padding 0.5s cubic-bezier(0.4,0,0.2,1)",
       }}
@@ -235,7 +241,10 @@ export default function Navbar() {
         }}
       >
         {/* ── Logo ── */}
-        <a href="#" className="flex items-center gap-2.5 shrink-0 no-underline">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="flex items-center gap-2.5 shrink-0 no-underline cursor-pointer bg-transparent border-none"
+        >
           <div
             style={{
             
@@ -280,18 +289,18 @@ export default function Navbar() {
             </span>
             
           </div>
-        </a>
+        </button>
 
         {/* ── Desktop Links ── */}
         <ul className="hidden md:flex items-center list-none gap-5">
           {navLinks.map((link) => (
             <li key={link.label}>
-              <a
-                href={link.href}
-                className="text-sm font-medium text-white/70 transition-colors duration-300 hover:text-white focus-visible:text-white focus-visible:outline-none"
+              <button
+                onClick={() => scrollToSection(link.section)}
+                className="text-sm font-medium text-white/70 transition-colors duration-300 hover:text-white focus-visible:text-white focus-visible:outline-none bg-transparent border-none cursor-pointer"
               >
                 {link.label}
-              </a>
+              </button>
             </li>
           ))}
           <li>
@@ -340,10 +349,9 @@ export default function Navbar() {
                     variants={prefersReducedMotion ? undefined : menuItemVariants}
                     custom={index}
                   >
-                    <motion.a
-                      href={link.href}
-                      onClick={closeMobileMenu}
-                      className="group relative block text-[2.25rem] font-bold text-white py-3 transition-colors focus-visible:outline-none"
+                    <motion.button
+                      onClick={() => { scrollToSection(link.section); closeMobileMenu(); }}
+                      className="group relative block text-[2.25rem] font-bold text-white py-3 transition-colors focus-visible:outline-none bg-transparent border-none cursor-pointer w-full text-left"
                       whileHover={{ x: 8 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -357,7 +365,7 @@ export default function Navbar() {
                         whileHover={{ width: 24 }}
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                       />
-                    </motion.a>
+                    </motion.button>
                   </motion.li>
                 ))}
               </motion.ul>
