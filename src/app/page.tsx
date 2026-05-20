@@ -6,6 +6,7 @@ import HorizontalGallery from "@/components/sections/horizontal-gallery";
 import About from "@/components/sections/about";
 import Certificates from "@/components/sections/certificates";
 import Contact from "@/components/sections/contact";
+import { Analytics } from "@vercel/analytics/next"
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <Certificates />
         <Contact />
       </main>
+      <Analytics />
     </>
   );
 }
