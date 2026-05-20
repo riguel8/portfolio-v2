@@ -92,7 +92,7 @@ function AnimatedMenuButton({
   return (
     <motion.button
       onClick={onClick}
-      className="flex md:hidden h-10 w-10 items-center justify-center rounded-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      className="flex md:hidden h-8 w-8 items-center justify-center rounded-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       style={{
         background: scrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.08)",
         transition: "background 0.3s ease",
@@ -206,7 +206,7 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 flex justify-center pointer-events-none"
       style={{
         zIndex: 100,
-        padding: scrolled ? "14px 24px" : "14px 24px",
+        padding: scrolled ? "12px 24px" : "12px 24px",
         transition: "padding 0.5s cubic-bezier(0.4,0,0.2,1)",
       }}
     >
@@ -218,7 +218,7 @@ export default function Navbar() {
           zIndex: 100,
           maxWidth:      scrolled ? "580px"                   : "1100px",
           height:        scrolled ? "56px"                    : "56px",
-          padding:       scrolled ? "0 20px"                  : "0 20px",
+          padding:       scrolled ? "12px 12px"               : "12px 12px",
           borderRadius:  scrolled ? "9999px"                  : "0px",
           background:    scrolled ? "rgba(18,18,20,0.88)"     : "transparent",
           borderColor:   scrolled ? "rgba(255,255,255,0.08)"  : "transparent",
