@@ -288,6 +288,27 @@ export const projects: Project[] = [
 
   // ── UI/UX Design ──
   {
+    id: "11.5",
+    title: "LGU Client Satisfaction Measurement - Wireframe",
+    category: ["UX Design", "Project", "Wireframe"],
+    platform: "design",
+    link: "https://www.figma.com/design/OtNZIFte4J6p1VibyR6Wcb/LGU-CSM?node-id=0-1&t=anabjIPU9BAcR8Q3-1",
+    description:
+      "Designed a community-driven digital platform focused on accessibility, trust, and user-centered experiences for agricultural stakeholders.",
+    tech: [
+      { icon: "logos:figma" },
+    ],
+    thumbnail: "/assets/images/projects/LGU-UX/thumbnail.png",
+    images: [
+      "/assets/images/projects/LGU-UX/LANDING PAGE.png",
+      "/assets/images/projects/LGU-UX/Select-Office.png",
+      "/assets/images/projects/LGU-UX/Select-Service.png",
+      "/assets/images/projects/LGU-UX/Citizen's-Charter.png",
+      "/assets/images/projects/LGU-UX/service-Quality.png",
+      "/assets/images/projects/LGU-UX/Feedback.png",
+    ],
+  },
+  {
     id: "12.0",
     title: "Epione Landing Page - Mental Health Service",
     category: ["UI Design", "Project"],
