@@ -288,8 +288,28 @@ export const projects: Project[] = [
 
   // ── UI/UX Design ──
   {
+    id: "12.0",
+    title: "Epione Landing Page - Mental Health Service",
+    category: ["UI/UX Design", "Project"],
+    platform: "design",
+    link: "https://www.figma.com/design/z0JFODxXpVyLC5oY3FTv3O/Epione-Landing-Page?node-id=3-2&t=H7bGjq1zjuXf4ISs-1",
+    description:
+      "Designed a landing page UI for Epione, a mental health service platform, focusing on user experience and accessibility.",
+    tech: [
+      { icon: "logos:figma" },
+    ],
+    thumbnail: "/assets/images/projects/Epione/Thumbnail.png",
+    images: [
+      "/assets/images/projects/Epione/hero.png",
+      "/assets/images/projects/Epione/section1.png",
+      "/assets/images/projects/Epione/section2.png",
+      "/assets/images/projects/Epione/testimonials.png",
+      "/assets/images/projects/Epione/footer.png",
+    ],
+  },
+  {
     id: "12",
-    title: "FARMURA",
+    title: "FARMURA - Super App",
     category: ["UI/UX Design", "Work"],
     platform: "design",
     link: "",
