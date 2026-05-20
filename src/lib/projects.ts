@@ -290,7 +290,7 @@ export const projects: Project[] = [
   {
     id: "12.0",
     title: "Epione Landing Page - Mental Health Service",
-    category: ["UI/UX Design", "Project"],
+    category: ["UI Design", "Project"],
     platform: "design",
     link: "https://www.figma.com/design/z0JFODxXpVyLC5oY3FTv3O/Epione-Landing-Page?node-id=3-2&t=H7bGjq1zjuXf4ISs-1",
     description:
@@ -331,11 +331,11 @@ export const projects: Project[] = [
   {
     id: "13",
     title: "Wanderly",
-    category: ["UI/UX Design", "Project"],
+    category: ["UI Design", "Project"],
     platform: "design",
     link: "https://www.figma.com/design/mG5mc4sgmxZv2qExdqujop/Wanderly?node-id=0-1&p=f&t=FuXWoWQDMSUCn6cu-0",
     description:
-      "Designed a landing page for a travel app using Figma.",
+      "Designed a landing page UI for a travel app using Figma.",
     tech: [
       { icon: "logos:figma" },
     ],
