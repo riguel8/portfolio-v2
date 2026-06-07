@@ -342,7 +342,7 @@ export default function Navbar() {
           <li>
             {/* ── CTA ── */}
             <a
-              href="/assets/files/Resume.pdf"
+              href="/assets/files/Resume404.pdf"
               download
               className="inline-flex items-center gap-2 rounded-full border-2 bg-white px-5 py-2 text-xs font-medium text-black transition-all duration-300 hover:bg-black hover:text-white hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
