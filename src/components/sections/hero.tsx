@@ -4,12 +4,25 @@ import { useRef } from "react";
 import dynamic from "next/dynamic";
 import { Icon } from "@iconify/react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import useTypewriter from "@/hooks/use-typewriter";
+import SplitText from "@/components/split-text";
+import DecryptText from "@/components/decrypt-text";
 
 const Lanyard = dynamic(() => import("@/components/lanyard/landyard"), { ssr: false });
+
+const roles = ["Web Developer", "Software Developer", "UI/UX Designer"];
+
+const subtitleText =
+  "I design, develop, and maintain web applications with hands-on experience in front-end, back-end, database management, machine learning, and UI/UX design.";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const { displayed: typedSubtitle } = useTypewriter({
+    text: subtitleText,
+    speed: 30,
+    delay: 1.2,
+  });
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -63,14 +76,19 @@ export default function Hero() {
           }
           className="gpu-accelerated relative z-10 mx-auto max-w-7xl px-4 sm:px-6 text-center md:px-12"
         >
-            {/* Eyebrow */}
+            {/* Eyebrow — rotating decrypted text */}
             <motion.p
               className="font-mono mb-4 sm:mb-8 text-xs sm:text-sm tracking-widest text-muted uppercase"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              Web Developer | UI/UX Designer
+              <DecryptText
+                words={roles}
+                className="text-xs sm:text-sm tracking-widest text-muted uppercase"
+                interval={3000}
+                scrambleSpeed={40}
+              />
             </motion.p>
 
             {/* Main heading */}
@@ -78,24 +96,27 @@ export default function Hero() {
               style={prefersReducedMotion ? {} : { y: titleY }}
               className="gpu-accelerated text-3xl font-bold leading-[1.05] tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-8xl"
             >
-              <motion.span
-                className="block"
-                initial={{ opacity: 0, y: 80 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-              >
-                Ruel Miguel <span className="text-accent">Diaz</span>
-              </motion.span>
+              <SplitText
+                text="Ruel Miguel Diaz"
+                delay={0.4}
+                staggerDelay={0.05}
+                className="text-3xl font-bold leading-[1.05] tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-8xl"
+              />
             </motion.h1>
 
-            {/* Subtitle */}
+            {/* Subtitle — typewriter effect */}
             <motion.p
-            className="mx-auto mt-6 sm:mt-8 max-w-lg text-sm sm:text-base leading-relaxed text-muted md:text-lg"
+              className="mx-auto mt-6 sm:mt-8 max-w-lg text-sm sm:text-base leading-relaxed text-muted md:text-lg"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
             >
-              I design, develop, and maintain web applications with hands-on experience in front-end, back-end, database management, machine learning, and UI/UX design.
+              {typedSubtitle}
+              <motion.span
+                className="inline-block h-4 w-0.5 bg-accent ml-0.5 align-middle"
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
+              />
             </motion.p>
 
             {/* Resume buttons */}
