@@ -131,6 +131,28 @@ export default function HorizontalGallery() {
     };
   }, [prefersReducedMotion, filteredProjects]);
 
+  // Reset horizontal scroll to first card when Work nav link is clicked
+  useEffect(() => {
+    const handleReset = () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const triggers = ScrollTrigger.getAll().filter((t) => t.vars.trigger === section);
+      triggers.forEach((t) => {
+        const startPos = typeof t.start === "number" ? t.start : 0;
+        const lenis = (window as unknown as { lenis?: { scrollTo: (target: number, options?: Record<string, unknown>) => void } }).lenis;
+        if (lenis) {
+          lenis.scrollTo(startPos, { offset: -80 });
+        } else {
+          window.scrollTo({ top: startPos, behavior: "smooth" });
+        }
+      });
+    };
+
+    window.addEventListener("reset-work-section", handleReset);
+    return () => window.removeEventListener("reset-work-section", handleReset);
+  }, []);
+
   return (
     <>
       {/* Mobile Layout - vertical grid */}

@@ -13,9 +13,22 @@ const navLinks = [
 ];
 
 function scrollToSection(section: string) {
-  const el = document.querySelector(`[data-section="${section}"]`);
+  if (section === "work") {
+    window.dispatchEvent(new CustomEvent("reset-work-section"));
+    return;
+  }
+  const elements = document.querySelectorAll(`[data-section="${section}"]`);
+  const el = Array.from(elements).find((e) => {
+    const style = window.getComputedStyle(e);
+    return style.display !== "none" && style.visibility !== "hidden";
+  });
   if (!el) return;
-  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  const lenis = (window as unknown as { lenis?: { scrollTo: (target: Element, options?: Record<string, unknown>) => void } }).lenis;
+  if (lenis) {
+    lenis.scrollTo(el, { offset: -80 });
+  } else {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
 // Animation variants for smooth, professional transitions
@@ -161,6 +174,7 @@ function AnimatedMenuButton({
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const ticking = useRef(false);
   const prefersReducedMotion = useReducedMotion();
 
@@ -199,6 +213,28 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    const sections = navLinks.map((l) => document.querySelector(`[data-section="${l.section}"]`)).filter(Boolean) as Element[];
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) {
+          const section = visible[0].target.getAttribute("data-section");
+          if (section) setActiveSection(section);
+        }
+      },
+      { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -294,14 +330,14 @@ export default function Navbar() {
         {/* ── Desktop Links ── */}
         <ul className="hidden md:flex items-center list-none gap-5">
           {navLinks.map((link) => (
-            <li key={link.label}>
-              <button
-                onClick={() => scrollToSection(link.section)}
+              <li key={link.label}>
+                <button
+                  onClick={() => scrollToSection(link.section)}
                 className="text-sm font-medium text-white/70 transition-colors duration-300 hover:text-white focus-visible:text-white focus-visible:outline-none bg-transparent border-none cursor-pointer"
-              >
-                {link.label}
-              </button>
-            </li>
+                >
+                  {link.label}
+                </button>
+              </li>
           ))}
           <li>
             {/* ── CTA ── */}

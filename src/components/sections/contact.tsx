@@ -61,7 +61,7 @@ export default function Contact() {
         )}
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 py-20 sm:py-32 md:px-12">
-          <div className="grid gap-16 md:grid-cols-2 md:gap-24">
+          <div className="grid gap-12 md:grid-cols-[1.3fr_0.7fr] md:gap-16">
             {/* Left — parallax vertical */}
             <motion.div
               className="gpu-accelerated"
@@ -110,8 +110,8 @@ export default function Contact() {
                       <span className="font-mono text-xs font-semibold text-muted uppercase tracking-wider">
                         Call
                       </span>
-                      <div className="text-base sm:text-lg font-bold text-foreground truncate">
-                        09922108064
+                      <div className="text-base sm:text-lg font-bold text-foreground whitespace-nowrap">
+                        0992-210-8064
                       </div>
                     </div>
                   </motion.a>
@@ -139,7 +139,7 @@ export default function Contact() {
                       <span className="font-mono text-xs font-semibold text-muted uppercase tracking-wider">
                         Email
                       </span>
-                      <div className="text-base sm:text-lg font-bold text-foreground truncate">
+                      <div className="text-base sm:text-lg font-bold text-foreground whitespace-nowrap">
                         rmdiaz1234@gmail.com
                       </div>
                     </div>

@@ -25,6 +25,7 @@ export default function LenisProvider({
     });
 
     lenisRef.current = lenis;
+    (window as unknown as { lenis: Lenis }).lenis = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
