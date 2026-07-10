@@ -22,6 +22,38 @@ export const platformLabels: Record<Platform, string> = {
 
 export const projects: Project[] = [
   {
+    id: "0001",
+    title: "MyEddesa",
+    category: ["Healthcare Website","Ghost Client"],
+    platform: "web",
+    link: "",
+    description: "A telehealth weight management platform connecting users with healthcare professionals for virtual consultations, personalized treatment plans, and progress tracking.",
+    tech: [{ icon: "devicon:html5" }, { icon: "devicon:css3" }, { icon: "devicon:javascript" }],
+    thumbnail: "/assets/images/projects/MyEdessa/Hero.png",
+    images: [
+      "/assets/images/projects/MyEdessa/Hero.png",
+      "/assets/images/projects/MyEdessa/Products.png",
+      "/assets/images/projects/MyEdessa/Details.png",
+      "/assets/images/projects/MyEdessa/scale.png",
+    ],
+  },
+  {
+    id: "0002",
+    title: "FARMURA Website",
+    category: ["Agriculture Website","Project"],
+    platform: "web",
+    link: "",
+    description: "A community-driven digital platform for agricultural stakeholders, featuring services, partnerships, and service areas. (Modified version, not official website)",
+    tech: [{ icon: "devicon:react" }, { icon: "devicon:typescript" }, { icon: "devicon:tailwindcss" }, { icon: "devicon:vitejs" }],
+    thumbnail: "/assets/images/projects/FARMURA-website/Hero.png",
+    images: [
+      "/assets/images/projects/FARMURA-website/Hero.png",
+      "/assets/images/projects/FARMURA-website/Services.png",
+      "/assets/images/projects/FARMURA-website/Partners.png",
+      "/assets/images/projects/FARMURA-website/Areas.png",
+    ],
+  },
+  {
     id: "000",
     title: "JB's Creation",
     category: ["Event Decoration Website","Project"],
@@ -287,6 +319,27 @@ export const projects: Project[] = [
   },
 
   // ── UI/UX Design ──
+  {
+    id: "003",
+    title: "Epione App",
+    category: ["UI Design", "Project"],
+    platform: "design",
+    link: "",
+    description:
+      "Epione is a mobile app that provides a safe, anonymous, and accessible space for students to seek support, guidance, and mental health resources.",
+    tech: [
+      { icon: "logos:figma" },
+    ],
+    thumbnail: "/assets/images/projects/Epione-App/Mockup.png",
+    images: [
+      "/assets/images/projects/Epione-App/Onboarding.png",
+      "/assets/images/projects/Epione-App/Home.png",
+      "/assets/images/projects/Epione-App/Chat.png",
+      "/assets/images/projects/Epione-App/Chat2.png",
+      "/assets/images/projects/Epione-App/Resources.png",
+      "/assets/images/projects/Epione-App/Community.png",
+    ],
+  },
   {
     id: "11.5",
     title: "LGU Client Satisfaction Measurement - Wireframe",
