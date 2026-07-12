@@ -40,14 +40,14 @@ export const projects: Project[] = [
   {
     id: "0002",
     title: "FARMURA Website",
-    category: ["Agriculture Website","Project"],
+    category: ["Website","Project"],
     platform: "web",
     link: "",
     description: "A community-driven digital platform for agricultural stakeholders, featuring services, partnerships, and service areas. (Modified version, not official website)",
     tech: [{ icon: "devicon:react" }, { icon: "devicon:typescript" }, { icon: "devicon:tailwindcss" }, { icon: "devicon:vitejs" }],
-    thumbnail: "/assets/images/projects/FARMURA-website/Hero.png",
+    thumbnail: "/assets/images/projects/FARMURA-website/Heros.png",
     images: [
-      "/assets/images/projects/FARMURA-website/Hero.png",
+      "/assets/images/projects/FARMURA-website/Heros.png",
       "/assets/images/projects/FARMURA-website/Services.png",
       "/assets/images/projects/FARMURA-website/Partners.png",
       "/assets/images/projects/FARMURA-website/Areas.png",
