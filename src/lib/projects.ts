@@ -40,9 +40,9 @@ export const projects: Project[] = [
   {
     id: "0002",
     title: "FARMURA Website",
-    category: ["Website","Project"],
+    category: ["Website","Front-End","Project"],
     platform: "web",
-    link: "",
+    link: "https://farmura-website.vercel.app",
     description: "A community-driven digital platform for agricultural stakeholders, featuring services, partnerships, and service areas. (Modified version, not official website)",
     tech: [{ icon: "devicon:react" }, { icon: "devicon:typescript" }, { icon: "devicon:tailwindcss" }, { icon: "devicon:vitejs" }],
     thumbnail: "/assets/images/projects/FARMURA-website/Heros.png",
@@ -56,7 +56,7 @@ export const projects: Project[] = [
   {
     id: "000",
     title: "JB's Creation",
-    category: ["Event Decoration Website","Project"],
+    category: ["Event Decoration Website", "Front-End", "Project"],
     platform: "web",
     link: "https://decor-universe.vercel.app",
     description: "A creative event gallery website for showcasing events and experiences. Built with Frontend technologies including React, TypeScript, Tailwind CSS, and Vite.",
@@ -100,7 +100,7 @@ export const projects: Project[] = [
   {
     id: "01",
     title: "DERU",
-    category: ["E-commerce Website", "Project"],
+    category: ["E-commerce Website", "Front-End", "Project"],
     platform: "web",
     link: "",
     description:
@@ -122,7 +122,7 @@ export const projects: Project[] = [
   {
     id: "02",
     title: "Migeru Build Engineers",
-    category: ["Construction Website", "Project"],
+    category: ["Construction Website","Front-End", "Project"],
     platform: "web",
     link: "",
     description:
@@ -144,7 +144,7 @@ export const projects: Project[] = [
   {
     id: "03",
     title: "Maison(AI-Inspired)",
-    category: ["E-commerce Website (Frontend)", "Project"],
+    category: ["E-commerce Website", "Front-End", "Project"],
     platform: "web",
     link: "",
     description:
@@ -165,7 +165,7 @@ export const projects: Project[] = [
   {
     id: "04", 
     title: "FARMURA Admin",
-    category: ["Admin Dashboard (Frontend)", "Project"],
+    category: ["Admin Dashboard", "Front-End", "Project"],
     platform: "web",
     link: "",
     description:
@@ -186,7 +186,7 @@ export const projects: Project[] = [
   {
     id: "05",
     title: "Journal of Science",
-    category: ["Web Application (Fullstack)", "Project"],
+    category: ["Full-Stack Web Application", "Project"],
     platform: "web",
     link: "",
     description:
@@ -207,7 +207,7 @@ export const projects: Project[] = [
   {
     id: "06",
     title: "Web-Based Appointment & Management System",
-    category: ["Capstone Project"],
+    category: ["Capstone Project", "Full-Stack Web Application"],
     platform: "web",
     link: "",
     description:
@@ -243,7 +243,7 @@ export const projects: Project[] = [
   {
     id: "08",
     title: "Boarding House Management System",
-    category: ["Web Application", "Project"],
+    category: ["Full-Stack Web Application", "Project"],
     platform: "web",
     link: "",
     description:
@@ -266,7 +266,7 @@ export const projects: Project[] = [
   {
     id: "09",
     title: "Document Management System",
-    category: ["Web Application", "Project"],
+    category: ["Full-Stack Web Application", "Project"],
     platform: "web",
     link: "",
     description:
