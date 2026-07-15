@@ -26,7 +26,7 @@ export const projects: Project[] = [
     title: "MyEddesa",
     category: ["Healthcare Website","Ghost Client"],
     platform: "web",
-    link: "",
+    link: "https://edessa-rho.vercel.app",
     description: "A telehealth weight management platform connecting users with healthcare professionals for virtual consultations, personalized treatment plans, and progress tracking.",
     tech: [{ icon: "devicon:html5" }, { icon: "devicon:css3" }, { icon: "devicon:javascript" }],
     thumbnail: "/assets/images/projects/MyEdessa/Hero.png",
