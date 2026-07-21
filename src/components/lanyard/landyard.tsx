@@ -16,7 +16,6 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 import { Suspense } from 'react';
 
-// replace with your own imports, see the usage snippet for details
 const cardGLB = './card.glb';
 const lanyard = './lanyard.png';
 

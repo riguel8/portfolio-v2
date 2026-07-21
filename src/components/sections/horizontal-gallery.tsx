@@ -5,10 +5,10 @@ import Image from "next/image";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projects, platformLabels, type Platform } from "@/lib/projects";
+import { projects, platformLabels, type Platform, type Project } from "@/lib/projects";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { Icon } from "@iconify/react";
-import Lightbox from "@/components/lightbox";
+import ProjectDetails from "@/components/project-details";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -67,10 +67,8 @@ export default function HorizontalGallery() {
   const prefersReducedMotion = useReducedMotion();
 
   const [activePlatform, setActivePlatform] = useState<Platform>("all");
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxImages, setLightboxImages] = useState<string[]>([]);
-  const [lightboxTitle, setLightboxTitle] = useState("");
-  const [lightboxLink, setLightboxLink] = useState("");
+  const [projectDetailsOpen, setProjectDetailsOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects = useMemo(
     () =>
@@ -80,11 +78,13 @@ export default function HorizontalGallery() {
     [activePlatform]
   );
 
-  const openPreview = (images: string[], title: string, link: string) => {
-    setLightboxImages(images);
-    setLightboxTitle(title);
-    setLightboxLink(link);
-    setLightboxOpen(true);
+  const openProjectDetails = (project: Project) => {
+    setSelectedProject(project);
+    setProjectDetailsOpen(true);
+  };
+
+  const navigateToProject = (project: Project) => {
+    setSelectedProject(project);
   };
 
   // GSAP horizontal scroll - only for desktop (md+)
@@ -211,7 +211,7 @@ export default function HorizontalGallery() {
                   key={project.id}
                   variants={prefersReducedMotion ? undefined : cardVariants}
                   className="group cursor-pointer rounded-xl border border-border bg-card overflow-hidden transition-shadow duration-300 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 active:scale-[0.98]"
-                  onClick={() => openPreview(project.images, project.title, project.link)}
+                  onClick={() => openProjectDetails(project)}
                   role="button"
                   aria-label={`View ${project.title} project`}
                   whileTap={{ scale: 0.98 }}
@@ -255,12 +255,12 @@ export default function HorizontalGallery() {
             </motion.div>
           </AnimatePresence>
         </div>
-        <Lightbox
-          images={lightboxImages}
-          isOpen={lightboxOpen}
-          onClose={() => setLightboxOpen(false)}
-          title={lightboxTitle}
-          Link={lightboxLink}
+        <ProjectDetails
+          project={selectedProject}
+          isOpen={projectDetailsOpen}
+          onClose={() => setProjectDetailsOpen(false)}
+          projects={filteredProjects}
+          onNavigateToProject={navigateToProject}
         />
       </section>
 
@@ -315,7 +315,7 @@ export default function HorizontalGallery() {
             <article
               key={project.id}
               className="group flex h-[60vh] w-[38vw] shrink-0 cursor-pointer flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
-              onClick={() => openPreview(project.images, project.title, project.link)}
+              onClick={() => openProjectDetails(project)}
               role="button"
               aria-label={`View ${project.title} project`}
             >
@@ -377,13 +377,13 @@ export default function HorizontalGallery() {
         </div>
       </section>
 
-      <Lightbox
-        images={lightboxImages}
-        isOpen={lightboxOpen}
-        onClose={() => setLightboxOpen(false)}
-        title={lightboxTitle}
-        Link={lightboxLink}
-      />
+        <ProjectDetails
+          project={selectedProject}
+          isOpen={projectDetailsOpen}
+          onClose={() => setProjectDetailsOpen(false)}
+          projects={filteredProjects}
+          onNavigateToProject={navigateToProject}
+        />
     </>
   );
 }

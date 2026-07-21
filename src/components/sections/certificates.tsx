@@ -73,14 +73,6 @@ export default function Certificates() {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const decorY1 = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const decorX1 = useTransform(scrollYProgress, [0, 1], [-50, 50]);
-
   const allImages = certificates.map((c) => c.image);
 
   const openCert = (index: number) => {
@@ -90,22 +82,7 @@ export default function Certificates() {
 
   return (
     <>
-      <section ref={sectionRef} data-section="certificates" className="section-grid relative overflow-hidden py-20 sm:py-32" aria-label="Certificates">
-        {/* Decorative parallax elements */}
-        {!prefersReducedMotion && (
-          <>
-            <motion.div
-              className="gpu-accelerated pointer-events-none absolute -right-40 top-1/3 h-72 w-72 rounded-full bg-accent/3 blur-3xl"
-              style={{ y: decorY1 }}
-              aria-hidden="true"
-            />
-            <motion.div
-              className="gpu-accelerated pointer-events-none absolute -left-20 bottom-1/4 h-56 w-56 rounded-full bg-accent/4 blur-2xl"
-              style={{ y: decorY1, x: decorX1 }}
-              aria-hidden="true"
-            />
-          </>
-        )}
+      <section ref={sectionRef} data-section="certificates" className="relative overflow-hidden py-20 sm:py-32" aria-label="Certificates">
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
           <ParallaxWrapper speed={0.1}>
