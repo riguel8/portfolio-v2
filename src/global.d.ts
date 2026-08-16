@@ -2,6 +2,10 @@ export { };
 
 declare module '*.glb';
 declare module '*.png';
+declare module '*.pdf';
+declare module '*.jpg';
+declare module '*.jpeg';
+declare module '*.css';
 
 declare module 'meshline' {
   export const MeshLineGeometry: any;
