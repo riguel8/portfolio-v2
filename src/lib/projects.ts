@@ -24,6 +24,135 @@ export const platformLabels: Record<Platform, string> = {
 
 export const projects: Project[] = [
   {
+    id: "000000001",
+    title: "New Tubod Water System",
+    category: [
+      "In-Progress Project",
+      "Water Billing Web Application",
+      "Full-Stack Development"
+    ],
+    platform: "web",
+    link: "",
+    description:
+      "An in-progress modern web application for managing water billing and customer accounts for the New Tubod Water System."
+    ,
+    background:
+      "This project is being developed as a modern digital platform for the New Tubod Water System. It aims to provide a more organized, accessible, and user-friendly way of managing water billing and customer accounts online while providing authorized personnel with a centralized system for managing billing data. The system is currently under development, with the public website and administrative system being progressively designed, implemented, and refined."
+    ,
+    highlights: [
+      "In-progress water billing web application",
+      "Responsive and mobile-first design",
+      "User authentication and authorization",
+      "Customer account management",
+      "Water billing and payment processing",
+      "Administrative dashboard for billing data management",
+    ],
+    tech: [
+      { icon: "devicon:php" },
+      { icon: "devicon:laravel" },
+      { icon: "devicon:react" },
+      { icon: "devicon:typescript" },
+      { icon: "devicon:tailwindcss" },
+      { icon: "devicon:mysql" },
+      { icon: "devicon:inertiajs" },
+    ],
+    thumbnail: "/assets/images/projects/NTWS/Thumbnails.png",
+    images: [
+      "/assets/images/projects/NTWS/Dashboard.png",
+      "/assets/images/projects/NTWS/Readings.png",
+      "/assets/images/projects/NTWS/POS.png",
+      "/assets/images/projects/NTWS/Mobile.png",
+    ],
+  },
+  {
+    id: "0000001",
+    title: "LGU Website",
+    category: [
+      "In-Progress Project",
+      "Government Web Application",
+      "Full-Stack Development"
+    ],
+    platform: "web",
+    link: "",
+    description:
+      "An in-progress modern and responsive website and content management system for the Municipality of Tubod, Surigao del Norte, designed to organize and present municipal information, services, programs, projects, news, events, documents, and public resources through a centralized digital platform."
+    ,
+    background:
+      "This project is being developed as a modern digital platform for the Municipality of Tubod, Surigao del Norte. It aims to provide a more organized, accessible, and user-friendly way of presenting municipal information and public resources online while providing authorized personnel with a centralized CMS for managing website content. The system is currently under development, with the public website and administrative CMS being progressively designed, implemented, and refined."
+    ,
+    highlights: [
+      "In-progress modern municipal website",
+      "Responsive and mobile-first public interface",
+      "Centralized content management system (CMS)",
+      "Municipality and barangay information",
+      "Programs and projects showcase",
+      "Citizen's Charter and municipal services directory",
+      "News, announcements, and events management",
+      "Municipal issuances management",
+      "Reports, forms, and public document repository",
+      "Media library and image gallery",
+      "Searchable municipal information and resources",
+      "Role-based user access and permissions",
+      "Responsive and accessible user experience",
+      "SEO-friendly public pages",
+      "Administrative dashboard for content management"
+    ],
+    tech: [
+      { icon: "devicon:php" },
+      { icon: "devicon:laravel" },
+      { icon: "devicon:react" },
+      { icon: "devicon:typescript" },
+      { icon: "devicon:tailwindcss" },
+      { icon: "devicon:mysql" },
+      { icon: "devicon:inertiajs" },
+    ],
+    thumbnail: "/assets/images/projects/LGU-website/Landing.png",
+    images: [
+      "/assets/images/projects/LGU-website/Landing.png",
+      "/assets/images/projects/LGU-website/Profile.png",
+      "/assets/images/projects/LGU-website/Dashboard.png",
+    ],
+  },
+  {
+    id: "00001",
+    title: "Lending Management",
+    category: ["In-progress Project", "Lending Website", "Full-Stack Web Application"],
+    platform: "web",
+    link: "",
+    description:
+        "A responsive web-based lending management system designed to simplify loan processing, borrower management, collection tracking, repayment scheduling, and financial monitoring. The system centralizes lending operations in one platform, allowing users to manage customers, loans, collections, capital accounts, payment history, and borrower ledger records with automated balance tracking and financial calculations.",
+    background:
+        "The Lending Management System was developed to replace manual and spreadsheet-based lending workflows with a centralized and automated web application. It is designed around a collection worksheet workflow where payments for multiple borrowers can be recorded in one sheet and automatically posted to their individual loan ledger accounts. The system helps reduce duplicate data entry, minimize calculation errors, improve collection monitoring, and provide a clearer view of the business's overall financial position.",
+    highlights: [
+        "Centralized borrower and customer management",
+        "Loan creation, approval, and loan product management",
+        "Automatic repayment schedule and loan balance computation",
+        "Collection worksheets for recording payments from multiple borrowers",
+        "Automatic posting of collections to individual borrower ledger accounts",
+        "Real-time tracking of capital, cash balance, collections, and outstanding loans",
+        "Payment history, receipts, reports, and financial account overview",
+        "PDF and Excel generation for loan agreements, schedules, worksheets, and ledger records",
+        "Responsive interface optimized for desktop, tablet, and mobile devices"
+    ],
+    tech: [
+      { icon: "devicon:php" },
+      { icon: "devicon:laravel" },
+      { icon: "devicon:react" },
+      { icon: "devicon:typescript" },
+      { icon: "devicon:tailwindcss" },
+      { icon: "devicon:mysql" },
+      { icon: "devicon:inertiajs" },
+    ],
+    thumbnail: "/assets/images/projects/Lending/Dashboard.png",
+    images: [
+      "/assets/images/projects/Lending/Dashboard.png",
+      "/assets/images/projects/Lending/Create.png",
+      "/assets/images/projects/Lending/History.png",
+      "/assets/images/projects/Lending/Overview.png",
+      "/assets/images/projects/Lending/Reports.png",
+    ],
+  },
+  {
     id: "0001",
     title: "MyEdessa",
     category: ["Project", "Healthcare Website", "Ghost Client"],
