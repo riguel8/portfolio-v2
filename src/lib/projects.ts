@@ -61,7 +61,7 @@ export const projects: Project[] = [
       "/assets/images/projects/NTWS/Dashboard.png",
       "/assets/images/projects/NTWS/Readings.png",
       "/assets/images/projects/NTWS/POS.png",
-      "/assets/images/projects/NTWS/Mobile.png",
+      "/assets/images/projects/NTWS/Consumer.png",
     ],
   },
   {
