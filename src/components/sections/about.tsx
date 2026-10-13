@@ -24,8 +24,8 @@ const education = [
 ];
 
 const experience = [
-  { role: "UI / UX Designer", company: "Freelance", period: "Aug 2025 – Present" },
-  { role: "Web Developer", company: "Freelance / Commission", period: "Jun 2023 - Present" },
+  { role: "UI / UX Designer", company: "Freelance", period: "Aug 2025 – October 2026" },
+  { role: "Web Developer", company: "Freelance / Commission", period: "Jun 2023 - September 2026" },
   { role: "Web Developer (Intern)", company: "Split Second Software Services Corp.", period: "Feb 2025 – May 2025" },
 ];
 
