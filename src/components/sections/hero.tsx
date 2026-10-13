@@ -127,7 +127,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 1.2 }}
             >
               <motion.a
-                href="/assets/files/Resume.pdf"
+                href="/assets/files/myResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border-2 bg-accent px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-bold text-background transition-colors duration-300 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -139,7 +139,7 @@ export default function Hero() {
                 View Resume
               </motion.a>
               {/* <a
-                href="/assets/files/Resume.pdf"
+                href="/assets/files/myResume.pdf"
                 download
                 className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium text-foreground transition-all duration-300 hover:border-accent/40 hover:bg-accent/5"
               >
