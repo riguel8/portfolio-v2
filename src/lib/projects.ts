@@ -27,20 +27,20 @@ export const projects: Project[] = [
     id: "000000001",
     title: "New Tubod Water System",
     category: [
-      "In-Progress Project",
+      // "In-Progress Project",
       "Water Billing Web Application",
       "Full-Stack Development"
     ],
     platform: "web",
     link: "",
     description:
-      "An in-progress modern web application for managing water billing and customer accounts for the New Tubod Water System."
+      "An modern web application for managing water billing and customer accounts for the New Tubod Water System."
     ,
     background:
       "This project is being developed as a modern digital platform for the New Tubod Water System. It aims to provide a more organized, accessible, and user-friendly way of managing water billing and customer accounts online while providing authorized personnel with a centralized system for managing billing data. The system is currently under development, with the public website and administrative system being progressively designed, implemented, and refined."
     ,
     highlights: [
-      "In-progress water billing web application",
+      "Water billing web application",
       "Responsive and mobile-first design",
       "User authentication and authorization",
       "Customer account management",
@@ -68,20 +68,20 @@ export const projects: Project[] = [
     id: "0000001",
     title: "LGU Website",
     category: [
-      "In-Progress Project",
+      // "In-Progress Project",
       "Government Web Application",
       "Full-Stack Development"
     ],
     platform: "web",
     link: "",
     description:
-      "An in-progress modern and responsive website and content management system for the Municipality of Tubod, Surigao del Norte, designed to organize and present municipal information, services, programs, projects, news, events, documents, and public resources through a centralized digital platform."
+      "An modern and responsive website and content management system for the Municipality of Tubod, Surigao del Norte, designed to organize and present municipal information, services, programs, projects, news, events, documents, and public resources through a centralized digital platform."
     ,
     background:
       "This project is being developed as a modern digital platform for the Municipality of Tubod, Surigao del Norte. It aims to provide a more organized, accessible, and user-friendly way of presenting municipal information and public resources online while providing authorized personnel with a centralized CMS for managing website content. The system is currently under development, with the public website and administrative CMS being progressively designed, implemented, and refined."
     ,
     highlights: [
-      "In-progress modern municipal website",
+      "Modern municipal website",
       "Responsive and mobile-first public interface",
       "Centralized content management system (CMS)",
       "Municipality and barangay information",
